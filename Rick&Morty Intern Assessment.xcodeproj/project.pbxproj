@@ -9,19 +9,25 @@
 /* Begin PBXBuildFile section */
 		961712282A8F751800207A35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961712272A8F751800207A35 /* AppDelegate.swift */; };
 		9617122A2A8F751900207A35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961712292A8F751900207A35 /* SceneDelegate.swift */; };
-		9617122C2A8F751900207A35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617122B2A8F751900207A35 /* ViewController.swift */; };
+		9617122C2A8F751900207A35 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617122B2A8F751900207A35 /* TabBarController.swift */; };
 		961712312A8F751A00207A35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 961712302A8F751A00207A35 /* Assets.xcassets */; };
 		961712342A8F751A00207A35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 961712322A8F751A00207A35 /* LaunchScreen.storyboard */; };
+		961712402A8F8CC500207A35 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617123F2A8F8CC500207A35 /* APIService.swift */; };
+		961712422A8F8D2000207A35 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961712412A8F8D2000207A35 /* APIRequest.swift */; };
+		961712442A8F8D3B00207A35 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961712432A8F8D3B00207A35 /* APIEndpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		961712242A8F751800207A35 /* Rick&Morty Intern Assessment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rick&Morty Intern Assessment.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		961712272A8F751800207A35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		961712292A8F751900207A35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		9617122B2A8F751900207A35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9617122B2A8F751900207A35 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		961712302A8F751A00207A35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		961712332A8F751A00207A35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		961712352A8F751A00207A35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9617123F2A8F8CC500207A35 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		961712412A8F8D2000207A35 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
+		961712432A8F8D3B00207A35 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +60,11 @@
 		961712262A8F751800207A35 /* Rick&Morty Intern Assessment */ = {
 			isa = PBXGroup;
 			children = (
+				961712462A8F8E1900207A35 /* Modules */,
+				961712452A8F8DFD00207A35 /* Managers */,
+				9617123E2A8F8C8A00207A35 /* Services */,
 				9617123B2A8F75A900207A35 /* Resources */,
-				9617122B2A8F751900207A35 /* ViewController.swift */,
+				969C07162A8F988C0057FA61 /* Extensions */,
 				961712352A8F751A00207A35 /* Info.plist */,
 			);
 			path = "Rick&Morty Intern Assessment";
@@ -70,6 +79,142 @@
 				961712322A8F751A00207A35 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		9617123E2A8F8C8A00207A35 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				969C07192A8F9A7C0057FA61 /* APIClient */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		961712452A8F8DFD00207A35 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		961712462A8F8E1900207A35 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				969C07182A8F99570057FA61 /* Core */,
+				961712472A8F937A00207A35 /* CharactersListModule */,
+				961712482A8F942C00207A35 /* CharacterDetailsModule */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		961712472A8F937A00207A35 /* CharactersListModule */ = {
+			isa = PBXGroup;
+			children = (
+				969C07112A8F95A60057FA61 /* Models */,
+				969C07132A8F95B20057FA61 /* Views */,
+				969C07122A8F95AC0057FA61 /* ViewModels */,
+			);
+			path = CharactersListModule;
+			sourceTree = "<group>";
+		};
+		961712482A8F942C00207A35 /* CharacterDetailsModule */ = {
+			isa = PBXGroup;
+			children = (
+				9617124B2A8F952500207A35 /* Models */,
+				961712492A8F94FB00207A35 /* Views */,
+				9617124A2A8F950500207A35 /* ViewModels */,
+			);
+			path = CharacterDetailsModule;
+			sourceTree = "<group>";
+		};
+		961712492A8F94FB00207A35 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		9617124A2A8F950500207A35 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		9617124B2A8F952500207A35 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				969C07152A8F960F0057FA61 /* DataTypes */,
+				969C07142A8F96040057FA61 /* APIResponseTypes */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		969C07112A8F95A60057FA61 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		969C07122A8F95AC0057FA61 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		969C07132A8F95B20057FA61 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		969C07142A8F96040057FA61 /* APIResponseTypes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = APIResponseTypes;
+			sourceTree = "<group>";
+		};
+		969C07152A8F960F0057FA61 /* DataTypes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataTypes;
+			sourceTree = "<group>";
+		};
+		969C07162A8F988C0057FA61 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				969C07172A8F99330057FA61 /* UIKit */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		969C07172A8F99330057FA61 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		969C07182A8F99570057FA61 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				9617122B2A8F751900207A35 /* TabBarController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		969C07192A8F9A7C0057FA61 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				9617123F2A8F8CC500207A35 /* APIService.swift */,
+				961712412A8F8D2000207A35 /* APIRequest.swift */,
+				961712432A8F8D3B00207A35 /* APIEndpoint.swift */,
+			);
+			path = APIClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,8 +287,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9617122C2A8F751900207A35 /* ViewController.swift in Sources */,
+				9617122C2A8F751900207A35 /* TabBarController.swift in Sources */,
+				961712402A8F8CC500207A35 /* APIService.swift in Sources */,
 				961712282A8F751800207A35 /* AppDelegate.swift in Sources */,
+				961712442A8F8D3B00207A35 /* APIEndpoint.swift in Sources */,
+				961712422A8F8D2000207A35 /* APIRequest.swift in Sources */,
 				9617122A2A8F751900207A35 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

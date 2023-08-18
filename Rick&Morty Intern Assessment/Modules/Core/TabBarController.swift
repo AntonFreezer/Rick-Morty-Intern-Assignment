@@ -7,14 +7,18 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TabBarController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .green
+        setUpTabs()
     }
 
 
+    func setUpTabs() {
+        //
+    }
 }
 
