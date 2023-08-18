@@ -10,7 +10,6 @@
 		961712282A8F751800207A35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961712272A8F751800207A35 /* AppDelegate.swift */; };
 		9617122A2A8F751900207A35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961712292A8F751900207A35 /* SceneDelegate.swift */; };
 		9617122C2A8F751900207A35 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617122B2A8F751900207A35 /* ViewController.swift */; };
-		9617122F2A8F751900207A35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9617122D2A8F751900207A35 /* Main.storyboard */; };
 		961712312A8F751A00207A35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 961712302A8F751A00207A35 /* Assets.xcassets */; };
 		961712342A8F751A00207A35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 961712322A8F751A00207A35 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -20,7 +19,6 @@
 		961712272A8F751800207A35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		961712292A8F751900207A35 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9617122B2A8F751900207A35 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		9617122E2A8F751900207A35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		961712302A8F751A00207A35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		961712332A8F751A00207A35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		961712352A8F751A00207A35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,15 +54,22 @@
 		961712262A8F751800207A35 /* Rick&Morty Intern Assessment */ = {
 			isa = PBXGroup;
 			children = (
-				961712272A8F751800207A35 /* AppDelegate.swift */,
-				961712292A8F751900207A35 /* SceneDelegate.swift */,
+				9617123B2A8F75A900207A35 /* Resources */,
 				9617122B2A8F751900207A35 /* ViewController.swift */,
-				9617122D2A8F751900207A35 /* Main.storyboard */,
-				961712302A8F751A00207A35 /* Assets.xcassets */,
-				961712322A8F751A00207A35 /* LaunchScreen.storyboard */,
 				961712352A8F751A00207A35 /* Info.plist */,
 			);
 			path = "Rick&Morty Intern Assessment";
+			sourceTree = "<group>";
+		};
+		9617123B2A8F75A900207A35 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				961712272A8F751800207A35 /* AppDelegate.swift */,
+				961712292A8F751900207A35 /* SceneDelegate.swift */,
+				961712302A8F751A00207A35 /* Assets.xcassets */,
+				961712322A8F751A00207A35 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +132,6 @@
 			files = (
 				961712342A8F751A00207A35 /* LaunchScreen.storyboard in Resources */,
 				961712312A8F751A00207A35 /* Assets.xcassets in Resources */,
-				9617122F2A8F751900207A35 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,14 +151,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		9617122D2A8F751900207A35 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9617122E2A8F751900207A35 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		961712322A8F751A00207A35 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -291,10 +287,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Rick&Morty Intern Assessment/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -319,10 +316,11 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Rick&Morty Intern Assessment/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
