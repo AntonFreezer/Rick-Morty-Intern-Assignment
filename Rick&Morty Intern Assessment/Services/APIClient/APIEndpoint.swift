@@ -8,7 +8,7 @@
 import Foundation
 
 @frozen enum APIEndpoint: String {
-    
-    case something
-    
+    case character
+    case location
+    case episode
 }
