@@ -26,6 +26,7 @@
 		964881F62A9373EB008DA625 /* CharactersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881F52A9373EB008DA625 /* CharactersListViewController.swift */; };
 		964881F92A9376B2008DA625 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881F82A9376B2008DA625 /* Colors.swift */; };
 		964881FC2A9376C8008DA625 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881FB2A9376C8008DA625 /* Images.swift */; };
+		964882002A93AEE0008DA625 /* UINavigationController+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881FF2A93AEE0008DA625 /* UINavigationController+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		964881F52A9373EB008DA625 /* CharactersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListViewController.swift; sourceTree = "<group>"; };
 		964881F82A9376B2008DA625 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		964881FB2A9376C8008DA625 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		964881FF2A93AEE0008DA625 /* UINavigationController+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +278,7 @@
 		969C07172A8F99330057FA61 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				964881FF2A93AEE0008DA625 /* UINavigationController+.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				964881EB2A936469008DA625 /* Origin.swift in Sources */,
 				961712422A8F8D2000207A35 /* APIRequest.swift in Sources */,
 				964881F92A9376B2008DA625 /* Colors.swift in Sources */,
+				964882002A93AEE0008DA625 /* UINavigationController+.swift in Sources */,
 				964881E72A93640F008DA625 /* CharacterStatus.swift in Sources */,
 				964881F42A937322008DA625 /* SettingsViewController.swift in Sources */,
 				9617122A2A8F751900207A35 /* SceneDelegate.swift in Sources */,

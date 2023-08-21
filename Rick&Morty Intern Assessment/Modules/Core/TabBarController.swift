@@ -16,7 +16,6 @@ class TabBarController: UITabBarController {
         setUpTabs()
     }
 
-
     func setUpTabs() {
         let charactersListViewController = CharactersListViewController()
         let settingsViewController = SettingsViewController()
@@ -24,8 +23,15 @@ class TabBarController: UITabBarController {
         charactersListViewController.navigationItem.largeTitleDisplayMode = .automatic
         settingsViewController.navigationItem.largeTitleDisplayMode = .automatic
         
-        let nav1 = UINavigationController(rootViewController: charactersListViewController)
-        let nav2 = UINavigationController(rootViewController: settingsViewController)
+        
+        class navController: UINavigationController {
+            override var childForStatusBarStyle: UIViewController? {
+                visibleViewController
+            }
+        }
+        
+        let nav1 = navController(rootViewController: charactersListViewController)
+        let nav2 = navController(rootViewController: settingsViewController)
         
         let nav1ImageConfiguration = UIImage.SymbolConfiguration(hierarchicalColor: .white)
         let nav1Image = UIImage(systemName: "person.3.sequence", withConfiguration: nav1ImageConfiguration)
@@ -42,4 +48,5 @@ class TabBarController: UITabBarController {
         tabBar.barStyle = .black
     }
 }
+
 
