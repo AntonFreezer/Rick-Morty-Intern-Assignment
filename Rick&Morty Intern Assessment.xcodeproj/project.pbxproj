@@ -22,6 +22,10 @@
 		964881EB2A936469008DA625 /* Origin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881EA2A936469008DA625 /* Origin.swift */; };
 		964881ED2A936488008DA625 /* CharacterLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881EC2A936488008DA625 /* CharacterLocation.swift */; };
 		964881EF2A936F5A008DA625 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881EE2A936F5A008DA625 /* ImageManager.swift */; };
+		964881F42A937322008DA625 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881F32A937322008DA625 /* SettingsViewController.swift */; };
+		964881F62A9373EB008DA625 /* CharactersListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881F52A9373EB008DA625 /* CharactersListViewController.swift */; };
+		964881F92A9376B2008DA625 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881F82A9376B2008DA625 /* Colors.swift */; };
+		964881FC2A9376C8008DA625 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881FB2A9376C8008DA625 /* Images.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +46,10 @@
 		964881EA2A936469008DA625 /* Origin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Origin.swift; sourceTree = "<group>"; };
 		964881EC2A936488008DA625 /* CharacterLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterLocation.swift; sourceTree = "<group>"; };
 		964881EE2A936F5A008DA625 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		964881F32A937322008DA625 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		964881F52A9373EB008DA625 /* CharactersListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersListViewController.swift; sourceTree = "<group>"; };
+		964881F82A9376B2008DA625 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		964881FB2A9376C8008DA625 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,7 @@
 				961712452A8F8DFD00207A35 /* Managers */,
 				9617123E2A8F8C8A00207A35 /* Services */,
 				9617123B2A8F75A900207A35 /* Resources */,
+				964881F72A937695008DA625 /* Helpers */,
 				969C07162A8F988C0057FA61 /* Extensions */,
 				961712352A8F751A00207A35 /* Info.plist */,
 			);
@@ -117,6 +126,7 @@
 				969C07182A8F99570057FA61 /* Core */,
 				961712472A8F937A00207A35 /* CharactersListModule */,
 				961712482A8F942C00207A35 /* CharacterDetailsModule */,
+				964881F02A9372A1008DA625 /* SettingsModule */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -184,6 +194,39 @@
 			path = APIResponseTypes;
 			sourceTree = "<group>";
 		};
+		964881F02A9372A1008DA625 /* SettingsModule */ = {
+			isa = PBXGroup;
+			children = (
+				964881F22A93730D008DA625 /* ViewModels */,
+				964881F12A937302008DA625 /* Views */,
+			);
+			path = SettingsModule;
+			sourceTree = "<group>";
+		};
+		964881F12A937302008DA625 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				964881F32A937322008DA625 /* SettingsViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		964881F22A93730D008DA625 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		964881F72A937695008DA625 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				964881F82A9376B2008DA625 /* Colors.swift */,
+				964881FB2A9376C8008DA625 /* Images.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		969C07112A8F95A60057FA61 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +246,7 @@
 		969C07132A8F95B20057FA61 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				964881F52A9373EB008DA625 /* CharactersListViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,12 +371,16 @@
 				9617122C2A8F751900207A35 /* TabBarController.swift in Sources */,
 				961712402A8F8CC500207A35 /* APIService.swift in Sources */,
 				961712282A8F751800207A35 /* AppDelegate.swift in Sources */,
+				964881FC2A9376C8008DA625 /* Images.swift in Sources */,
 				964881E32A9362BE008DA625 /* GetAllCharactersResponse.swift in Sources */,
 				964881ED2A936488008DA625 /* CharacterLocation.swift in Sources */,
+				964881F62A9373EB008DA625 /* CharactersListViewController.swift in Sources */,
 				961712442A8F8D3B00207A35 /* APIEndpoint.swift in Sources */,
 				964881EB2A936469008DA625 /* Origin.swift in Sources */,
 				961712422A8F8D2000207A35 /* APIRequest.swift in Sources */,
+				964881F92A9376B2008DA625 /* Colors.swift in Sources */,
 				964881E72A93640F008DA625 /* CharacterStatus.swift in Sources */,
+				964881F42A937322008DA625 /* SettingsViewController.swift in Sources */,
 				9617122A2A8F751900207A35 /* SceneDelegate.swift in Sources */,
 				964881E92A936442008DA625 /* CharacterGender.swift in Sources */,
 				964881E52A93634B008DA625 /* Character.swift in Sources */,
