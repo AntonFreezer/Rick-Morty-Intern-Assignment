@@ -63,7 +63,7 @@ final class APIRequest {
         self.queryParameters = queryParameters
     }
     
-    /// Convenience initializer for request construction by desired URL
+    /// Convenience initializer for request construction by desired URL (TBD)
     convenience init?(url: URL) {
         let urlString = url.absoluteString
         if !urlString.contains(Constants.baseURL) { return nil }

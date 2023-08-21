@@ -9,6 +9,7 @@ import Foundation
 
 @frozen enum APIEndpoint: String {
     case character
+    // TBD
     case location
     case episode
 }

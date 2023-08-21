@@ -15,6 +15,12 @@
 		961712402A8F8CC500207A35 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617123F2A8F8CC500207A35 /* APIService.swift */; };
 		961712422A8F8D2000207A35 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961712412A8F8D2000207A35 /* APIRequest.swift */; };
 		961712442A8F8D3B00207A35 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961712432A8F8D3B00207A35 /* APIEndpoint.swift */; };
+		964881E32A9362BE008DA625 /* GetAllCharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881E22A9362BE008DA625 /* GetAllCharactersResponse.swift */; };
+		964881E52A93634B008DA625 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881E42A93634B008DA625 /* Character.swift */; };
+		964881E72A93640F008DA625 /* CharacterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881E62A93640F008DA625 /* CharacterStatus.swift */; };
+		964881E92A936442008DA625 /* CharacterGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881E82A936442008DA625 /* CharacterGender.swift */; };
+		964881EB2A936469008DA625 /* Origin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881EA2A936469008DA625 /* Origin.swift */; };
+		964881ED2A936488008DA625 /* CharacterLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964881EC2A936488008DA625 /* CharacterLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,12 @@
 		9617123F2A8F8CC500207A35 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		961712412A8F8D2000207A35 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		961712432A8F8D3B00207A35 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		964881E22A9362BE008DA625 /* GetAllCharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllCharactersResponse.swift; sourceTree = "<group>"; };
+		964881E42A93634B008DA625 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		964881E62A93640F008DA625 /* CharacterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterStatus.swift; sourceTree = "<group>"; };
+		964881E82A936442008DA625 /* CharacterGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterGender.swift; sourceTree = "<group>"; };
+		964881EA2A936469008DA625 /* Origin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Origin.swift; sourceTree = "<group>"; };
+		964881EC2A936488008DA625 /* CharacterLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +96,7 @@
 		9617123E2A8F8C8A00207A35 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				969C07192A8F9A7C0057FA61 /* APIClient */,
+				969C07192A8F9A7C0057FA61 /* RickMortyAPIClient */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -149,9 +161,31 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		964881E02A93627E008DA625 /* DataTypes */ = {
+			isa = PBXGroup;
+			children = (
+				964881E42A93634B008DA625 /* Character.swift */,
+				964881E62A93640F008DA625 /* CharacterStatus.swift */,
+				964881E82A936442008DA625 /* CharacterGender.swift */,
+				964881EA2A936469008DA625 /* Origin.swift */,
+				964881EC2A936488008DA625 /* CharacterLocation.swift */,
+			);
+			path = DataTypes;
+			sourceTree = "<group>";
+		};
+		964881E12A93628C008DA625 /* APIResponseTypes */ = {
+			isa = PBXGroup;
+			children = (
+				964881E22A9362BE008DA625 /* GetAllCharactersResponse.swift */,
+			);
+			path = APIResponseTypes;
+			sourceTree = "<group>";
+		};
 		969C07112A8F95A60057FA61 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				964881E12A93628C008DA625 /* APIResponseTypes */,
+				964881E02A93627E008DA625 /* DataTypes */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -207,14 +241,14 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		969C07192A8F9A7C0057FA61 /* APIClient */ = {
+		969C07192A8F9A7C0057FA61 /* RickMortyAPIClient */ = {
 			isa = PBXGroup;
 			children = (
 				9617123F2A8F8CC500207A35 /* APIService.swift */,
 				961712412A8F8D2000207A35 /* APIRequest.swift */,
 				961712432A8F8D3B00207A35 /* APIEndpoint.swift */,
 			);
-			path = APIClient;
+			path = RickMortyAPIClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,9 +324,15 @@
 				9617122C2A8F751900207A35 /* TabBarController.swift in Sources */,
 				961712402A8F8CC500207A35 /* APIService.swift in Sources */,
 				961712282A8F751800207A35 /* AppDelegate.swift in Sources */,
+				964881E32A9362BE008DA625 /* GetAllCharactersResponse.swift in Sources */,
+				964881ED2A936488008DA625 /* CharacterLocation.swift in Sources */,
 				961712442A8F8D3B00207A35 /* APIEndpoint.swift in Sources */,
+				964881EB2A936469008DA625 /* Origin.swift in Sources */,
 				961712422A8F8D2000207A35 /* APIRequest.swift in Sources */,
+				964881E72A93640F008DA625 /* CharacterStatus.swift in Sources */,
 				9617122A2A8F751900207A35 /* SceneDelegate.swift in Sources */,
+				964881E92A936442008DA625 /* CharacterGender.swift in Sources */,
+				964881E52A93634B008DA625 /* Character.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,7 +476,6 @@
 				INFOPLIST_FILE = "Rick&Morty Intern Assessment/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
@@ -465,7 +504,6 @@
 				INFOPLIST_FILE = "Rick&Morty Intern Assessment/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
