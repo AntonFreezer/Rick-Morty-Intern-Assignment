@@ -11,7 +11,7 @@ final class CharactersListViewController: UIViewController {
     
     //MARK: - Properties
     
-    private let charactersListView = CharacterListView()
+    private let characterListView = CharacterListView()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -27,8 +27,6 @@ final class CharactersListViewController: UIViewController {
     }
     
     private func setupViewController() {
-        view.backgroundColor = UIColor(named: Colors.defaultBackgroundColor.rawValue)
-    
         let largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationController?.navigationBar.largeTitleTextAttributes = largeTitleTextAttributes
             
@@ -36,15 +34,15 @@ final class CharactersListViewController: UIViewController {
     }
     
     private func setupView() {
-        charactersListView.delegate = self
+        characterListView.delegate = self
         
-        view.addSubview(charactersListView)
-//        NSLayoutConstraint.activate([
-//            characterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            characterListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-//            characterListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-//            characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-//        ])
+        view.addSubview(characterListView)
+        NSLayoutConstraint.activate([
+            characterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            characterListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            characterListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
     }
     
 }

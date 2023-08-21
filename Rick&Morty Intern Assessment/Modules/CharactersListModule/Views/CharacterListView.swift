@@ -31,6 +31,9 @@ final class CharacterListView: UIView {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
+        collectionView.backgroundColor = UIColor(named: Colors.defaultBackgroundColor.rawValue)
+        collectionView.register(CharacterCollectionViewCell.self, forCellWithReuseIdentifier: CharacterCollectionViewCell.cellIdentifier)
+        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         return collectionView
@@ -43,6 +46,8 @@ final class CharacterListView: UIView {
         super.init(frame: frame)
         translatesAutoresizingMaskIntoConstraints = false
         
+        addSubview(collectionView)
+        
         setupLayout()
         setupViewModel()
         setupCollectionView()
@@ -53,7 +58,12 @@ final class CharacterListView: UIView {
     }
     
     private func setupLayout() {
-        // UI Components constraints implementation
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: topAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
     }
     
     private func setupViewModel() {

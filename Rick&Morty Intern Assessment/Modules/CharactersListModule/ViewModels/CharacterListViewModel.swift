@@ -21,7 +21,23 @@ final class CharacterListViewModel: NSObject {
     
     private var isLoadingCharacters = false
     
-    private var characters: [Character] = []
+    private var characters: [Character] = [] {
+        didSet {
+            for character in characters {
+                let viewModel = CharacterCollectionViewCellViewModel(
+                    characterName: character.name,
+                    characterStatus: character.status,
+                    characterImageURL: URL(string: character.image)
+                )
+                
+                if !cellViewModels.contains(viewModel) {
+                    cellViewModels.append(viewModel)
+                }
+            }
+        }
+    }
+    
+    private var cellViewModels: [CharacterCollectionViewCellViewModel] = []
     
     private var currentResponseInfo: GetAllCharactersResponse.Info? = nil
     
@@ -36,18 +52,37 @@ final class CharacterListViewModel: NSObject {
 
 //MARK: - CollectionView DataSource&Delegate
 
-extension CharacterListViewModel: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CharacterListViewModel: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    // Cell
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // cell implementation
-        
-        return 1
+        cellViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        // cell implementation
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCollectionViewCell.cellIdentifier, for: indexPath) as? CharacterCollectionViewCell else {
+            fatalError("Could not create cell for \(indexPath.item)")
+        }
         
-        return UICollectionViewCell()
+        let viewModel = cellViewModels[indexPath.row]
+        cell.configure(with: viewModel)
+        
+        return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let bounds = UIScreen.main.bounds
+        
+        let width = (bounds.width-25) / 2
+        let height = width * 1.5
+        
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let character = characters[indexPath.row]
+        delegate?.didSelectCharacter(character)
+    }
     
 }
