@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Origin: Decodable {
+struct Origin: Codable {
     let name: String
     let url: String
 }

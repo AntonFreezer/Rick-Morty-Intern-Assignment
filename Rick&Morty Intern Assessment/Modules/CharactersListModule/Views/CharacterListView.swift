@@ -39,7 +39,6 @@ final class CharacterListView: UIView {
         return collectionView
     }()
     
-    
     //MARK: - Lifecycle & Setup
     
     override init(frame: CGRect) {
@@ -75,8 +74,8 @@ final class CharacterListView: UIView {
         collectionView.delegate = viewModel
         collectionView.dataSource = viewModel
     }
-        
 }
+
     //MARK: - CharacterListViewModel Delegate
     
 extension CharacterListView: CharacterListViewModelDelegate {
@@ -95,7 +94,4 @@ extension CharacterListView: CharacterListViewModelDelegate {
     func didSelectCharacter(_ character: Character) {
         delegate?.characterListView(self, didSelectCharacter: character)
     }
-    
-    
 }
-

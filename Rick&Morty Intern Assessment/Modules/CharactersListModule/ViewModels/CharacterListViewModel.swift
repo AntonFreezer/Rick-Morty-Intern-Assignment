@@ -44,7 +44,26 @@ final class CharacterListViewModel: NSObject {
     //MARK: - Network
     
     /// First fetch from API containing 20 Character objects
-    public func fetchFirstCharacters() { }
+    public func fetchFirstCharacters() {
+        APIService.shared.execute(.allCharactersRequest, expecting: GetAllCharactersResponse.self) { [weak self] result in
+            switch result {
+                
+            case .failure(let error):
+                print(String(describing: error))
+                
+            case.success(let responseModel):
+                let results = responseModel.results
+                let info = responseModel.info
+                
+                self?.characters = results
+                self?.currentResponseInfo = info
+                
+                DispatchQueue.main.async {
+                    self?.delegate?.didLoadFirstCharacters()
+                }
+            }
+        }
+    }
     
     /// General fetching from API 
     public func fetchCharacters() { }
