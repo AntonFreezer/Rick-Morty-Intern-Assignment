@@ -25,7 +25,9 @@ final class CharacterCollectionViewCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         
-        label.font = .systemFont(ofSize: 22, weight: .medium)
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.textColor = .white
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         
         return label
@@ -52,26 +54,25 @@ final class CharacterCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupLayer() {
-        contentView.layer.cornerRadius = 8
-        contentView.layer.shadowColor = UIColor.systemBackground.cgColor
-        contentView.layer.cornerRadius = 4
-        contentView.layer.shadowOffset = CGSize(width: -4, height: 4)
-        contentView.layer.shadowOpacity = 0.2
+        // contentView
+        contentView.layer.cornerRadius = contentView.bounds.height / 12
+        
+        // imageView
+        imageView.layer.cornerRadius = (contentView.bounds.height / 12) - 5
     }
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            nameLabel.heightAnchor.constraint(equalToConstant: 30),
-            
+            // nameLabel
             nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 7),
             nameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -7),
-            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -3),
+            nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
             
-            
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor),
-            imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
-            imageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -3)
+            // imageView
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
+            imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            imageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -20)
         ])
     }
     

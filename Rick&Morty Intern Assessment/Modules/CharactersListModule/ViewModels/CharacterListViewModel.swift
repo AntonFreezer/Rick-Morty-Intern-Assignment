@@ -138,7 +138,7 @@ extension CharacterListViewModel: UICollectionViewDelegate, UICollectionViewData
         let bounds = UIScreen.main.bounds
         
         let width = (bounds.width-25) / 2
-        let height = width * 1.5
+        let height = width * 1.35
         
         return CGSize(width: width, height: height)
     }
