@@ -34,6 +34,9 @@ final class CharacterListView: UIView {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
+        let topInset: CGFloat = 50
+        collectionView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
+        
         collectionView.backgroundColor = UIColor(named: Colors.defaultBackgroundColor.rawValue)
         collectionView.register(CharacterCollectionViewCell.self, forCellWithReuseIdentifier: CharacterCollectionViewCell.cellIdentifier)
         collectionView.register(SectionFooterCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: SectionFooterCollectionReusableView.identifier)
@@ -62,7 +65,7 @@ final class CharacterListView: UIView {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: topAnchor, constant: 40),
+            collectionView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor)

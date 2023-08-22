@@ -22,19 +22,13 @@ final class CharactersListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupViewController()
-        setupView()
-    }
-    
-    private func setupViewController() {
-        let largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navigationController?.navigationBar.largeTitleTextAttributes = largeTitleTextAttributes
-            
         title = "Characters"
+        setupView()
     }
     
     private func setupView() {
         characterListView.delegate = self
+        
         
         view.addSubview(characterListView)
         NSLayoutConstraint.activate([
