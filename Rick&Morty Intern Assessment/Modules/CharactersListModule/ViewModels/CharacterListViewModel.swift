@@ -135,5 +135,23 @@ extension CharacterListViewModel: UICollectionViewDelegate, UICollectionViewData
         let character = characters[indexPath.row]
         delegate?.didSelectCharacter(character)
     }
-    
+}
+
+//MARK: - ScrollView Delegate & Pagination
+
+extension CharacterListViewModel: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let nextURL = currentResponseInfo?.next,
+                let url = URL(string: nextURL) else {
+            return
+        }
+        
+        let offset = scrollView.contentOffset.y
+        let totalContentHeight = scrollView.contentSize.height
+        let totalScrollViewFixedHeight = scrollView.frame.size.height
+        
+        if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+            fetchCharacters(url: url)
+        }
+    }
 }
