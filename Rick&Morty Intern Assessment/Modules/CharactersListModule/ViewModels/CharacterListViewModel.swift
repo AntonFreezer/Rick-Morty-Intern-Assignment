@@ -9,7 +9,7 @@ import UIKit
 
 protocol CharacterListViewModelDelegate: AnyObject {
     func didLoadFirstCharacters()
-    func didLoadCharacters()
+    func didLoadCharacters(with indexPaths: [IndexPath])
     func didSelectCharacter(_ character: Character)
 }
 
@@ -65,8 +65,40 @@ final class CharacterListViewModel: NSObject {
         }
     }
     
-    /// General fetching from API 
-    public func fetchCharacters() { }
+    /// General fetching from API
+    public func fetchCharacters(url: URL) {
+        guard let request = APIRequest(url: url) else { return }
+        
+        APIService.shared.execute(request, expecting: GetAllCharactersResponse.self) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+                
+            case .failure(let error):
+                print(String(describing: error))
+                
+            case.success(let responseModel):
+                let results = responseModel.results
+                let info = responseModel.info
+                self.currentResponseInfo = info
+                
+                let oldCount = self.characters.count
+                let newCount = results.count
+                let totalCount = oldCount + newCount
+                
+                let startingIndex = totalCount - newCount
+                let lastIndex = startingIndex + newCount
+                
+                let indexPaths = Array(startingIndex..<lastIndex).compactMap
+                { IndexPath(row: $0, section: 0) }
+                
+                self.characters.append(contentsOf: results)
+                DispatchQueue.main.async {
+                    self.delegate?.didLoadCharacters(with: indexPaths)
+                }
+            }
+        }
+    }
 }
 
 //MARK: - CollectionView DataSource&Delegate

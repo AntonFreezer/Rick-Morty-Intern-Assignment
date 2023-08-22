@@ -84,9 +84,9 @@ extension CharacterListView: CharacterListViewModelDelegate {
         // animation
     }
     
-    func didLoadCharacters() {
+    func didLoadCharacters(with indexPaths: [IndexPath]) {
         collectionView.performBatchUpdates {
-            // insert items by indexPath implementation
+            collectionView.insertItems(at: indexPaths)
         }
         // animation
     }
