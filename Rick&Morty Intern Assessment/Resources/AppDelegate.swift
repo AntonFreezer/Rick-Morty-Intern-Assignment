@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithOpaqueBackground()
         
-        navigationBarAppearance.backgroundColor = UIColor(named: Colors.defaultBackgroundColor.rawValue)
+        navigationBarAppearance.backgroundColor = UIColor.backgroundColor
         
         let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navigationBarAppearance.largeTitleTextAttributes = textAttributes

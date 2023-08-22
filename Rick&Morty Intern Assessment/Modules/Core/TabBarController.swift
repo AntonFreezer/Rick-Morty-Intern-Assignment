@@ -15,6 +15,12 @@ class TabBarController: UITabBarController {
         view.backgroundColor = .black
         setUpTabs()
     }
+    
+    private class navController: UINavigationController {
+        override var childForStatusBarStyle: UIViewController? {
+            visibleViewController
+        }
+    }
 
     func setUpTabs() {
         let charactersListViewController = CharactersListViewController()
@@ -24,11 +30,7 @@ class TabBarController: UITabBarController {
         settingsViewController.navigationItem.largeTitleDisplayMode = .automatic
         
         
-        class navController: UINavigationController {
-            override var childForStatusBarStyle: UIViewController? {
-                visibleViewController
-            }
-        }
+        
         
         let nav1 = navController(rootViewController: charactersListViewController)
         let nav2 = navController(rootViewController: settingsViewController)

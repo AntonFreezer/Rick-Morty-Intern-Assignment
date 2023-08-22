@@ -31,6 +31,7 @@
 		964882062A93DFB4008DA625 /* CharacterCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964882052A93DFB4008DA625 /* CharacterCollectionViewCellViewModel.swift */; };
 		964882082A93E1CC008DA625 /* CharacterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964882072A93E1CC008DA625 /* CharacterCollectionViewCell.swift */; };
 		96740B5A2A94DC4A001CB9F8 /* SectionFooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96740B592A94DC4A001CB9F8 /* SectionFooterCollectionReusableView.swift */; };
+		96740B5C2A952694001CB9F8 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96740B5B2A952694001CB9F8 /* UIColor+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		964882052A93DFB4008DA625 /* CharacterCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		964882072A93E1CC008DA625 /* CharacterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterCollectionViewCell.swift; sourceTree = "<group>"; };
 		96740B592A94DC4A001CB9F8 /* SectionFooterCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionFooterCollectionReusableView.swift; sourceTree = "<group>"; };
+		96740B5B2A952694001CB9F8 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -291,6 +293,7 @@
 		969C07172A8F99330057FA61 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				96740B5B2A952694001CB9F8 /* UIColor+.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 				964881F92A9376B2008DA625 /* Colors.swift in Sources */,
 				964881E72A93640F008DA625 /* CharacterStatus.swift in Sources */,
 				964881F42A937322008DA625 /* SettingsViewController.swift in Sources */,
+				96740B5C2A952694001CB9F8 /* UIColor+.swift in Sources */,
 				9617122A2A8F751900207A35 /* SceneDelegate.swift in Sources */,
 				964881E92A936442008DA625 /* CharacterGender.swift in Sources */,
 				964881E52A93634B008DA625 /* Character.swift in Sources */,

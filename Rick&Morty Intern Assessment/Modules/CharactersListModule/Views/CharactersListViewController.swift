@@ -23,14 +23,15 @@ final class CharactersListViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Characters"
+        view.backgroundColor = UIColor.backgroundColor
+        
         setupView()
     }
     
     private func setupView() {
         characterListView.delegate = self
-        
-        
         view.addSubview(characterListView)
+        
         NSLayoutConstraint.activate([
             characterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             characterListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),

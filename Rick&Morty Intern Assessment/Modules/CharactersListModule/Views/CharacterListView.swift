@@ -37,7 +37,7 @@ final class CharacterListView: UIView {
         let topInset: CGFloat = 50
         collectionView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
         
-        collectionView.backgroundColor = UIColor(named: Colors.defaultBackgroundColor.rawValue)
+        collectionView.backgroundColor = .clear
         collectionView.register(CharacterCollectionViewCell.self, forCellWithReuseIdentifier: CharacterCollectionViewCell.cellIdentifier)
         collectionView.register(SectionFooterCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: SectionFooterCollectionReusableView.identifier)
         
