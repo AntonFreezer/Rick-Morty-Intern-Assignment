@@ -33,6 +33,7 @@ final class CharacterListView: UIView {
         
         collectionView.backgroundColor = UIColor(named: Colors.defaultBackgroundColor.rawValue)
         collectionView.register(CharacterCollectionViewCell.self, forCellWithReuseIdentifier: CharacterCollectionViewCell.cellIdentifier)
+        collectionView.register(SectionFooterCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: SectionFooterCollectionReusableView.identifier)
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -88,7 +89,6 @@ extension CharacterListView: CharacterListViewModelDelegate {
         collectionView.performBatchUpdates {
             collectionView.insertItems(at: indexPaths)
         }
-        // animation
     }
     
     func didSelectCharacter(_ character: Character) {

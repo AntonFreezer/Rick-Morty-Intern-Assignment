@@ -41,6 +41,9 @@ final class CharacterListViewModel: NSObject {
     
     private var currentResponseInfo: GetAllCharactersResponse.Info? = nil
     
+    public var shouldShowMoreIndicator: Bool {
+        return currentResponseInfo?.next != nil
+    }
     //MARK: - Network
     
     /// First fetch from API containing 20 Character objects
@@ -67,7 +70,13 @@ final class CharacterListViewModel: NSObject {
     
     /// General fetching from API
     public func fetchCharacters(url: URL) {
-        guard let request = APIRequest(url: url) else { return }
+        guard !isLoadingCharacters else { return }
+        isLoadingCharacters = true
+        
+        guard let request = APIRequest(url: url) else {
+            isLoadingCharacters = false
+            return
+        }
         
         APIService.shared.execute(request, expecting: GetAllCharactersResponse.self) { [weak self] result in
             guard let self = self else { return }
@@ -75,6 +84,7 @@ final class CharacterListViewModel: NSObject {
             switch result {
                 
             case .failure(let error):
+                self.isLoadingCharacters = false
                 print(String(describing: error))
                 
             case.success(let responseModel):
@@ -88,13 +98,15 @@ final class CharacterListViewModel: NSObject {
                 
                 let startingIndex = totalCount - newCount
                 let lastIndex = startingIndex + newCount
+                print(startingIndex, lastIndex)
                 
-                let indexPaths = Array(startingIndex..<lastIndex).compactMap
-                { IndexPath(row: $0, section: 0) }
-                
+                let indexPaths = Array(startingIndex..<lastIndex).compactMap(
+                    { IndexPath(row: $0, section: 0) })
+                print(indexPaths)
                 self.characters.append(contentsOf: results)
                 DispatchQueue.main.async {
                     self.delegate?.didLoadCharacters(with: indexPaths)
+                    self.isLoadingCharacters = false
                 }
             }
         }
@@ -135,23 +147,53 @@ extension CharacterListViewModel: UICollectionViewDelegate, UICollectionViewData
         let character = characters[indexPath.row]
         delegate?.didSelectCharacter(character)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        guard let footerView = collectionView.dequeueReusableSupplementaryView(
+            ofKind: UICollectionView.elementKindSectionFooter,
+            withReuseIdentifier: SectionFooterCollectionReusableView.identifier,
+            for: indexPath) as? SectionFooterCollectionReusableView
+        else {
+            fatalError("Could not dequeue footer view with \(SectionFooterCollectionReusableView.identifier)")
+        }
+        
+        footerView.startAnimating()
+        
+        return footerView
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        guard shouldShowMoreIndicator else {
+            return .zero
+        }
+        
+        return CGSize(width: collectionView.frame.width, height: 100)
+    }
 }
 
 //MARK: - ScrollView Delegate & Pagination
 
 extension CharacterListViewModel: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let nextURL = currentResponseInfo?.next,
-                let url = URL(string: nextURL) else {
+        
+        guard shouldShowMoreIndicator,
+              !isLoadingCharacters,
+              !cellViewModels.isEmpty,
+              let nextURL = currentResponseInfo?.next,
+              let url = URL(string: nextURL) else {
             return
         }
         
-        let offset = scrollView.contentOffset.y
-        let totalContentHeight = scrollView.contentSize.height
-        let totalScrollViewFixedHeight = scrollView.frame.size.height
-        
-        if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
-            fetchCharacters(url: url)
+        Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { [weak self] t in
+            let offset = scrollView.contentOffset.y
+            let totalContentHeight = scrollView.contentSize.height
+            let totalScrollViewFixedHeight = scrollView.frame.size.height
+            
+            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 100) {
+                self?.fetchCharacters(url: url)
+            }
+            t.invalidate()
         }
     }
 }
