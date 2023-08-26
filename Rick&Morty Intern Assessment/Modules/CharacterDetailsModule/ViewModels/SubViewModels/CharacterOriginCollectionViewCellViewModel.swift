@@ -54,6 +54,8 @@ final class CharacterOriginCollectionViewCellViewModel {
         
         guard let url = originURL,
               let request = APIRequest(url: url) else {
+            let emptyModel = CharacterLocation.emptyModel
+            originDataBlock?(emptyModel)
             return
         }
         isFetching = true

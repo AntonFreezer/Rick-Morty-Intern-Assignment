@@ -16,3 +16,16 @@ struct CharacterLocation: Codable, LocationDataRepresentable {
     let url: String
     let created: String
 }
+
+extension CharacterLocation {
+    static var emptyModel: Self {
+        return CharacterLocation(
+            id: .zero,
+            name: "None",
+            type: "Unknown",
+            dimension: "None",
+            residents: [],
+            url: "",
+            created: "")
+    }
+}

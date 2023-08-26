@@ -41,11 +41,6 @@ final class CharacterDetailViewModel {
     
     init(character: Character) {
         self.character = character
-        if !(character.type.isEmpty) {
-            print(character.type) }
-        else {
-                print("NO NO NO NO NO NO NO NO NO NO NO NO NO NO")
-            }
         setUpSections()
     }
     
