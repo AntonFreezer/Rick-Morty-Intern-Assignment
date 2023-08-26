@@ -64,14 +64,14 @@ final class CharacterCollectionViewCell: UICollectionViewCell {
     private func setupLayout() {
         NSLayoutConstraint.activate([
             // nameLabel
-            nameLabel.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 7),
-            nameLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -7),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 7),
+            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -7),
             nameLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
             
             // imageView
             imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            imageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 10),
-            imageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             imageView.bottomAnchor.constraint(equalTo: nameLabel.topAnchor, constant: -20)
         ])
     }

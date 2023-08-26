@@ -66,12 +66,22 @@ final class CharacterDetailViewModel {
     
     //MARK: - CollectionView Layouts
     
+    private func createHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let footerHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),                                                      heightDimension: .absolute(25.0))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(
+                        layoutSize: footerHeaderSize,
+                        elementKind: UICollectionView.elementKindSectionHeader,
+                        alignment: .top)
+        
+        return header
+    }
+    
     public func createInfoSectionLayout()  -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(0.5),
+            widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalHeight(1.0)))
         item.contentInsets = NSDirectionalEdgeInsets(
-            top: 2, leading: 2, bottom: 2, trailing: 2)
+            top: 10, leading: 0.5, bottom: 10, trailing: 0.5)
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
@@ -80,16 +90,19 @@ final class CharacterDetailViewModel {
             ), subitems: [item, item]
         )
         
+        let header = createHeader()
+        
         let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [header]
         return section
     }
     
     public func createOriginSectionLayout() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(0.5),
+            widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalHeight(1.0)))
         item.contentInsets = NSDirectionalEdgeInsets(
-            top: 4, leading: 4, bottom: 4, trailing: 4)
+            top: 10, leading: 0.5, bottom: 10, trailing: 0.5)
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
@@ -98,7 +111,10 @@ final class CharacterDetailViewModel {
             subitems: [item]
         )
         
+        let header = createHeader()
+        
         let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [header]
         return section
         
     }
@@ -108,17 +124,20 @@ final class CharacterDetailViewModel {
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalHeight(1.0)))
         item.contentInsets = NSDirectionalEdgeInsets(
-            top: 10, leading: 5, bottom: 10, trailing: 8)
+            top: 10, leading: 0.5, bottom: 10, trailing: 0.5)
         
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.8),
+                widthDimension: .fractionalWidth(1.0),
                 heightDimension: .absolute(150)
             ), subitems: [item]
         )
         
+        let header = createHeader()
+        
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .groupPaging
+        section.boundarySupplementaryItems = [header]        
+        section.orthogonalScrollingBehavior = .none
         return section
     }
 }

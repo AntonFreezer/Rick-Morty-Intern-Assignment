@@ -61,9 +61,9 @@ final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = UIColor(named: Colors.CharacterDetailViewCellColor.rawValue)
         contentView.layer.cornerRadius = 12
         
-        contentView.addSubview(episodeNameLabel)
-        contentView.addSubview(episodeSeasonLabel)
-        contentView.addSubview(episodeAirDateLabel)
+//        contentView.addSubview(episodeNameLabel)
+//        contentView.addSubview(episodeSeasonLabel)
+//        contentView.addSubview(episodeAirDateLabel)
     }
     
     private func setupLayout() {
@@ -71,12 +71,12 @@ final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
 //            episodeNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
 //            episodeNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
 //            episodeNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-//            
+//
 //            episodeSeasonLabel.topAnchor.constraint(equalTo: episodeNameLabel.bottomAnchor, constant: 10),
 //            episodeSeasonLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
 //            episodeSeasonLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 5),
 //            episodeSeasonLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-//            
+//
 //            episodeAirDateLabel.topAnchor.constraint(equalTo: episodeNameLabel.bottomAnchor, constant: 10),
 //            episodeAirDateLabel.leadingAnchor.constraint(equalTo: episodeSeasonLabel.trailingAnchor, constant: 10),
 //            episodeAirDateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 5),

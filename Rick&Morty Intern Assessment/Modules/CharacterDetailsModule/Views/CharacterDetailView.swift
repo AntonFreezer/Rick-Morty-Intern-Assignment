@@ -19,6 +19,8 @@ final class CharacterDetailView: UIView {
         let imageView = UIImageView(frame: .zero)
         
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.layer.cornerRadius = 16
+        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -27,7 +29,9 @@ final class CharacterDetailView: UIView {
         let label = UILabel(frame: .zero)
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 22, weight: .bold)
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.textColor = .white
+        label.textAlignment = .center
         
         return label
     }()
@@ -36,20 +40,12 @@ final class CharacterDetailView: UIView {
         let label = UILabel(frame: .zero)
         
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textColor = UIColor(named: Colors.EpisodeSeasonColor.rawValue)
+        label.textAlignment = .center
         
         return label
     }()
-
-//    private let spinner: UIActivityIndicatorView = {
-//        let spinner = UIActivityIndicatorView(style: .large)
-//
-//        spinner.hidesWhenStopped = true
-//        spinner.translatesAutoresizingMaskIntoConstraints = false
-//
-//        return spinner
-//    }()
     
     public var collectionView: UICollectionView?
     
@@ -75,11 +71,10 @@ final class CharacterDetailView: UIView {
         let collectionView = createCollectionView()
         self.collectionView = collectionView
         
-//        addSubview(characterImageView)
-//        addSubview(characterNameLabel)
-//        addSubview(characterStatusLabel)
+        addSubview(characterImageView)
+        addSubview(characterNameLabel)
+        addSubview(characterStatusLabel)
         addSubview(collectionView)
-//        addSubview(spinner)
     }
     
     private func setupLayout() {
@@ -88,26 +83,22 @@ final class CharacterDetailView: UIView {
         }
         
         NSLayoutConstraint.activate([
-//            spinner.widthAnchor.constraint(equalToConstant: 100),
-//            spinner.heightAnchor.constraint(equalToConstant: 100),
-//            spinner.centerXAnchor.constraint(equalTo: centerXAnchor),
-//            spinner.centerYAnchor.constraint(equalTo: centerYAnchor),
+            characterImageView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            characterImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            characterImageView.heightAnchor.constraint(equalToConstant: 148),
+            characterImageView.widthAnchor.constraint(equalToConstant: 148),
             
-//            characterImageView.topAnchor.constraint(equalTo: topAnchor),
-//            characterImageView.leftAnchor.constraint(equalTo: leftAnchor),
-//            characterImageView.rightAnchor.constraint(equalTo: rightAnchor),
-//            
-//            characterNameLabel.topAnchor.constraint(equalTo: characterImageView.bottomAnchor),
-//            characterNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            characterNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-//            
-//            characterStatusLabel.topAnchor.constraint(equalTo: characterNameLabel.bottomAnchor),
-//            characterStatusLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            characterStatusLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            characterNameLabel.topAnchor.constraint(equalTo: characterImageView.bottomAnchor, constant: 20),
+            characterNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            characterNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            collectionView.topAnchor.constraint(equalTo: topAnchor),
-            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
-            collectionView.rightAnchor.constraint(equalTo: rightAnchor),
+            characterStatusLabel.topAnchor.constraint(equalTo: characterNameLabel.bottomAnchor, constant: 5),
+            characterStatusLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            characterStatusLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            collectionView.topAnchor.constraint(equalTo: characterStatusLabel.bottomAnchor, constant: 25),
+            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
+            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
@@ -142,6 +133,7 @@ final class CharacterDetailView: UIView {
         collectionView.register(CharacterInfoCollectionViewCell.self, forCellWithReuseIdentifier: CharacterInfoCollectionViewCell.cellIdentifier)
         collectionView.register(CharacterOriginCollectionViewCell.self, forCellWithReuseIdentifier: CharacterOriginCollectionViewCell.cellIdentifier)
         collectionView.register(CharacterEpisodeCollectionViewCell.self, forCellWithReuseIdentifier: CharacterEpisodeCollectionViewCell.cellIdentifier)
+        collectionView.register(SectionHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderCollectionReusableView.identifier)
         
         return collectionView
     }

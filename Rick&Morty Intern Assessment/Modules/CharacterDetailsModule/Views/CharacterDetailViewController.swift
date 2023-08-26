@@ -53,6 +53,8 @@ final class CharacterDetailViewController: UIViewController {
 
 extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
+    // Section
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return viewModel.sections.count
     }
@@ -69,6 +71,8 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
             return viewModels.count
         }
     }
+    
+    // Cell
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let sectionType = viewModel.sections[indexPath.section]
@@ -101,6 +105,40 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
             return cell
         }
     }
+    
+    // Header
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+
+        guard let headerView = collectionView.dequeueReusableSupplementaryView(
+            ofKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: SectionHeaderCollectionReusableView.identifier,
+            for: indexPath) as? SectionHeaderCollectionReusableView
+        else {
+            fatalError("Could not dequeue footer view with \(SectionHeaderCollectionReusableView.identifier)")
+        }
+
+        let sectionType = viewModel.sections[indexPath.section]
+        switch sectionType {
+        case .info:
+            headerView.titleLabel.text = "Info"
+            return headerView
+        case .origin:
+            headerView.titleLabel.text = "Origin"
+            return headerView
+        case .episodes:
+            headerView.titleLabel.text = "Episodes"
+            return headerView
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+
+        return CGSize(width: collectionView.frame.width, height: 100)
+    }
+    
+    
+    // Navigation
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sectionType = viewModel.sections[indexPath.section]

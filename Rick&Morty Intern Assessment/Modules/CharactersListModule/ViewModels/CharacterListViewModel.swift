@@ -148,6 +148,8 @@ extension CharacterListViewModel: UICollectionViewDelegate, UICollectionViewData
         delegate?.didSelectCharacter(character)
     }
     
+    // Footer
+    
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
         guard let footerView = collectionView.dequeueReusableSupplementaryView(

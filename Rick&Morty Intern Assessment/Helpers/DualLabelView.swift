@@ -9,37 +9,37 @@ import UIKit
 
 class DualLabelView: UIView {
     
-    private let leftLabel = UILabel()
-    private let rightLabel = UILabel()
+    private let leadingLabel = UILabel()
+    private let trailingLabel = UILabel()
 
     // Shared properties
-    var font: UIFont = .systemFont(ofSize: UIFont.systemFontSize) {
+    public var font: UIFont = .systemFont(ofSize: UIFont.systemFontSize) {
         didSet {
-            leftLabel.font = font
-            rightLabel.font = font
+            leadingLabel.font = font
+            trailingLabel.font = font
         }
     }
 
     // Individual properties for left label
-    var leftText: String? {
-        get { return leftLabel.text }
-        set { leftLabel.text = newValue }
+    public var leadingText: String? {
+        get { return leadingLabel.text }
+        set { leadingLabel.text = newValue }
     }
     
-    var leftFont: UIFont? {
-        get { return leftLabel.font }
-        set { leftLabel.font = newValue }
+    public var leadingFont: UIFont? {
+        get { return leadingLabel.font }
+        set { leadingLabel.font = newValue }
     }
 
     // Individual properties for right label
-    var rightText: String? {
-        get { return rightLabel.text }
-        set { rightLabel.text = newValue }
+    public var trailingText: String? {
+        get { return trailingLabel.text }
+        set { trailingLabel.text = newValue }
     }
     
-    var rightFont: UIFont? {
-        get { return rightLabel.font }
-        set { rightLabel.font = newValue }
+    public var trailingFont: UIFont? {
+        get { return trailingLabel.font }
+        set { trailingLabel.font = newValue }
     }
     
     /// Initialize and set up the subviews and constraints
@@ -54,25 +54,26 @@ class DualLabelView: UIView {
     }
     
     private func setupUI() {
-        addSubview(leftLabel)
-        addSubview(rightLabel)
+        addSubview(leadingLabel)
+        addSubview(trailingLabel)
         
-        leftLabel.textAlignment = .left
-        rightLabel.textAlignment = .right
+        leadingLabel.textAlignment = .left
+        trailingLabel.textAlignment = .right
     }
     
     private func setupConstraints() {
-        leftLabel.translatesAutoresizingMaskIntoConstraints = false
-        rightLabel.translatesAutoresizingMaskIntoConstraints = false
+        leadingLabel.translatesAutoresizingMaskIntoConstraints = false
+        trailingLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            leftLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            leftLabel.topAnchor.constraint(equalTo: topAnchor),
-            leftLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            rightLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            rightLabel.topAnchor.constraint(equalTo: topAnchor),
-            rightLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            rightLabel.leadingAnchor.constraint(equalTo: leftLabel.trailingAnchor),
+            leadingLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            leadingLabel.topAnchor.constraint(equalTo: topAnchor),
+            leadingLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            trailingLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            trailingLabel.topAnchor.constraint(equalTo: topAnchor),
+            trailingLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            trailingLabel.leadingAnchor.constraint(equalTo: leadingLabel.trailingAnchor),
         ])
     }
 }

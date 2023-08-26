@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().standardAppearance = navigationBarAppearance
         
+//        UIView.appearance().semanticContentAttribute = .forceRightToLeft
+        
         return true
     }
 
