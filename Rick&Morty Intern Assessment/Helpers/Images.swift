@@ -9,5 +9,5 @@ import Foundation
 
 @frozen enum Images: String {
     // CharacterDetails
-    case planetIcon
+    case PlanetIcon
 }

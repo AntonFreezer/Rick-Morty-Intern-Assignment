@@ -66,28 +66,32 @@ final class CharacterDetailViewModel {
     
     //MARK: - CollectionView Layouts
     
+    private func createDefaultLayoutItem() -> NSCollectionLayoutItem {
+        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0)))
+        item.contentInsets = NSDirectionalEdgeInsets(
+            top: 10, leading: 0.5, bottom: 10, trailing: 0.5)
+        return item
+    }
+    
     private func createHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
         let footerHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),                                                      heightDimension: .absolute(25.0))
         let header = NSCollectionLayoutBoundarySupplementaryItem(
                         layoutSize: footerHeaderSize,
                         elementKind: UICollectionView.elementKindSectionHeader,
                         alignment: .top)
-        
         return header
     }
     
     public func createInfoSectionLayout()  -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0)))
-        item.contentInsets = NSDirectionalEdgeInsets(
-            top: 10, leading: 0.5, bottom: 10, trailing: 0.5)
+        let item = createDefaultLayoutItem()
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(150)
-            ), subitems: [item, item]
+                heightDimension: .absolute(124)),
+            subitems: [item, item]
         )
         
         let header = createHeader()
@@ -98,11 +102,7 @@ final class CharacterDetailViewModel {
     }
     
     public func createOriginSectionLayout() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0)))
-        item.contentInsets = NSDirectionalEdgeInsets(
-            top: 10, leading: 0.5, bottom: 10, trailing: 0.5)
+        let item = createDefaultLayoutItem()
         
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
@@ -120,19 +120,15 @@ final class CharacterDetailViewModel {
     }
     
     public func createEpisodeSectionLayout()  -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalHeight(1.0)))
+        let item = createDefaultLayoutItem()
         item.contentInsets = NSDirectionalEdgeInsets(
-            top: 10, leading: 0.5, bottom: 10, trailing: 0.5)
-        
+            top: 10, leading: 0.5, bottom: 0, trailing: 0.5)
         let group = NSCollectionLayoutGroup.vertical(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
-                heightDimension: .absolute(150)
+                heightDimension: .absolute(86)
             ), subitems: [item]
         )
-        
         let header = createHeader()
         
         let section = NSCollectionLayoutSection(group: group)

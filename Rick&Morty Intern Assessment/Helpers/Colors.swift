@@ -13,6 +13,7 @@ import Foundation
     // CharacterDetailView
     case CharacterDetailViewCellColor
     case EpisodeSeasonColor
+    case OriginIconBackgroundColor
     // CharactersView
     case CharactersViewCellColor
 }

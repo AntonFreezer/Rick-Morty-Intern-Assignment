@@ -96,7 +96,7 @@ final class CharacterDetailView: UIView {
             characterStatusLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             characterStatusLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            collectionView.topAnchor.constraint(equalTo: characterStatusLabel.bottomAnchor, constant: 25),
+            collectionView.topAnchor.constraint(equalTo: characterStatusLabel.bottomAnchor, constant: 20),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -129,6 +129,7 @@ final class CharacterDetailView: UIView {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = UIColor(named: Colors.DefaultBackgroundColor.rawValue)
         
         collectionView.register(CharacterInfoCollectionViewCell.self, forCellWithReuseIdentifier: CharacterInfoCollectionViewCell.cellIdentifier)
         collectionView.register(CharacterOriginCollectionViewCell.self, forCellWithReuseIdentifier: CharacterOriginCollectionViewCell.cellIdentifier)

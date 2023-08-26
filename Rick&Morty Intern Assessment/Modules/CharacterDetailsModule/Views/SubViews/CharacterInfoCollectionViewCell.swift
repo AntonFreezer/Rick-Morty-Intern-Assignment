@@ -16,29 +16,48 @@ final class CharacterInfoCollectionViewCell: UICollectionViewCell {
     //MARK: - UI Components
     
     private var speciesLabel: DualLabelView = {
-        let speciesLabel = DualLabelView(frame: .zero)
+        let label = DualLabelView(frame: .zero)
         
-        speciesLabel.translatesAutoresizingMaskIntoConstraints = false
-        speciesLabel.leadingText = "Species:"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.leadingText = "Species:"
+        label.leadingTextColor = .lightGray
+        label.trailingTextColor = .white
         
-        return speciesLabel
+        return label
     }()
     private var typeLabel: DualLabelView = {
-        let typeLabel = DualLabelView(frame: .zero)
+        let label = DualLabelView(frame: .zero)
         
-        typeLabel.translatesAutoresizingMaskIntoConstraints = false
-        typeLabel.leadingText = "Type:"
-        
-        return typeLabel
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 16, weight: .medium )
+        label.leadingText = "Type:"
+        label.leadingTextColor = .lightGray
+        label.trailingTextColor = .white
+        return label
     }()
     
     private var genderLabel: DualLabelView = {
-        let genderLabel = DualLabelView(frame: .zero)
+        let label = DualLabelView(frame: .zero)
         
-        genderLabel.translatesAutoresizingMaskIntoConstraints = false
-        genderLabel.leadingText = "Gender:"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.leadingText = "Gender:"
+        label.leadingTextColor = .lightGray
+        label.trailingTextColor = .white
         
-        return genderLabel
+        return label
+    }()
+    
+    private var stackView: UIStackView = {
+        let stackView = UIStackView(frame: .zero)
+        
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .equalSpacing
+        
+        return stackView
     }()
     
     //MARK: - Lifecycle & Setup
@@ -58,32 +77,23 @@ final class CharacterInfoCollectionViewCell: UICollectionViewCell {
     private func setupCell() {
         contentView.backgroundColor = UIColor(named: Colors.CharacterDetailViewCellColor.rawValue)
         
-        contentView.addSubview(speciesLabel)
-        contentView.addSubview(typeLabel)
-        contentView.addSubview(genderLabel)
+        stackView.addArrangedSubview(speciesLabel)
+        stackView.addArrangedSubview(typeLabel)
+        stackView.addArrangedSubview(genderLabel)
+        
+        contentView.addSubview(stackView)
     }
     
     private func setupLayer() {
-        contentView.layer.cornerRadius = contentView.bounds.height / 12
+        contentView.layer.cornerRadius = contentView.bounds.height / 10
     }
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-//            // speciesLabel
-//            speciesLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 7),
-//            speciesLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 7),
-//            speciesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -7),
-//            
-//            // typeLabel
-//            typeLabel.topAnchor.constraint(equalTo: speciesLabel.bottomAnchor, constant: 7),
-//            typeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 7),
-//            typeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -7),
-//
-//            // genderLabel
-//            genderLabel.topAnchor.constraint(equalTo: typeLabel.bottomAnchor, constant: 7),
-//            genderLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 7),
-//            genderLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -7),
-//            genderLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -7)
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -12),
         ])
     }
     

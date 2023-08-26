@@ -15,20 +15,23 @@ final class CharacterOriginCollectionViewCell: UICollectionViewCell {
     
     //MARK: - UI Components
     
-    private var iconImage: UIImageView = {
-        let image = UIImageView(frame: .zero)
+    private var iconImageView: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
         
-        image.translatesAutoresizingMaskIntoConstraints = false
-        image.backgroundColor = UIColor(red: 0.25, green: 0.28, blue: 0.42, alpha: 1)
-        image.image = UIImage(named: Images.planetIcon.rawValue)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = UIColor(named: Colors.OriginIconBackgroundColor.rawValue)
+        imageView.contentMode = .center
+        imageView.layer.cornerRadius = 14
+        imageView.image = UIImage(named: Images.PlanetIcon.rawValue)
         
-        return image
+        return imageView
     }()
     
     private var originNameLabel: UILabel = {
         let label = UILabel(frame: .zero)
         
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textColor = .white
         
         return label
@@ -38,6 +41,7 @@ final class CharacterOriginCollectionViewCell: UICollectionViewCell {
         let label = UILabel(frame: .zero)
         
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 14, weight: .medium)
         label.textColor = UIColor(named: Colors.EpisodeSeasonColor.rawValue)
         
         return label
@@ -60,31 +64,33 @@ final class CharacterOriginCollectionViewCell: UICollectionViewCell {
     private func setupCell() {
         contentView.backgroundColor = UIColor(named: Colors.CharacterDetailViewCellColor.rawValue)
         
-        contentView.addSubview(iconImage)
+        contentView.addSubview(iconImageView)
         contentView.addSubview(originNameLabel)
         contentView.addSubview(originTypeLabel)
     }
     
     private func setupLayer() {
-        contentView.layer.cornerRadius = contentView.bounds.height / 12
+        contentView.layer.cornerRadius = 14
     }
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-//            // iconImage
-//            iconImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 7),
-//            iconImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 7),
-//            iconImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -7),
-//
-//            // originNameLabel
-//            originNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-//            originNameLabel.leadingAnchor.constraint(equalTo: iconImage.leadingAnchor, constant: 10),
-//            originNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -7),
-//
-//            // originTypeLabel
-//            originTypeLabel.topAnchor.constraint(equalTo: originNameLabel.bottomAnchor, constant: 10),
-//            originTypeLabel.leadingAnchor.constraint(equalTo: iconImage.trailingAnchor, constant: 10),
-//            originTypeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -7),
+            // iconImage
+            iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
+            iconImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            iconImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
+            iconImageView.heightAnchor.constraint(equalToConstant: 64),
+            iconImageView.widthAnchor.constraint(equalToConstant: 64),
+
+            // originNameLabel
+            originNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 17),
+            originNameLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 10),
+            originNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+
+            // originTypeLabel
+            originTypeLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 10),
+            originTypeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            originTypeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -17)
         ])
     }
     

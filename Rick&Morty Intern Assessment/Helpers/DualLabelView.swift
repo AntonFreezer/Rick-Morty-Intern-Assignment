@@ -42,6 +42,16 @@ class DualLabelView: UIView {
         set { trailingLabel.font = newValue }
     }
     
+    public var leadingTextColor: UIColor? {
+        get { return leadingLabel.textColor }
+        set { leadingLabel.textColor = newValue }
+    }
+    
+    public var trailingTextColor: UIColor? {
+        get { return trailingLabel.textColor }
+        set { trailingLabel.textColor = newValue }
+    }
+    
     /// Initialize and set up the subviews and constraints
     override init(frame: CGRect) {
         super.init(frame: frame)
