@@ -76,6 +76,12 @@ final class CharacterCollectionViewCell: UICollectionViewCell {
         ])
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.imageView.image = nil
+        self.nameLabel.text = nil
+    }
+    
     //MARK: - CharacterCollectionViewCell View Model
     
     public func configure(with viewModel: CharacterCollectionViewCellViewModel) {

@@ -102,7 +102,7 @@ final class CharacterListViewModel: NSObject {
                 
                 let indexPaths = Array(startingIndex..<lastIndex).compactMap(
                     { IndexPath(row: $0, section: 0) })
-                print(indexPaths)
+                
                 self.characters.append(contentsOf: results)
                 DispatchQueue.main.async {
                     self.delegate?.didLoadCharacters(with: indexPaths)

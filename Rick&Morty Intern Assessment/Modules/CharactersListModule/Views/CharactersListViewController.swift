@@ -46,8 +46,9 @@ final class CharactersListViewController: UIViewController {
 
 extension CharactersListViewController: CharacterListViewDelegate {
     func characterListView(_ characterListView: CharacterListView, didSelectCharacter character: Character) {
-        // CharacterDetailsModule implementation and navigation
+        let viewModel = CharacterDetailViewModel(character: character)
+        let characterDetailVC = CharacterDetailViewController(viewModel: viewModel)
+        characterDetailVC.navigationItem.largeTitleDisplayMode = .never
+        navigationController?.pushViewController(characterDetailVC, animated: true)
     }
-    
-    
 }

@@ -9,9 +9,10 @@ import Foundation
 
 @frozen enum Colors: String {
     // App
-    case defaultBackgroundColor
+    case DefaultBackgroundColor
     // CharacterDetailView
-    case characterDetailViewCellColor
+    case CharacterDetailViewCellColor
+    case EpisodeSeasonColor
     // CharactersView
     case CharactersViewCellColor
 }

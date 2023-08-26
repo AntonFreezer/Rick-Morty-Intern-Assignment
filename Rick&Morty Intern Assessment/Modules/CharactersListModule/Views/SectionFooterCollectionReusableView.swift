@@ -32,7 +32,7 @@ final class SectionFooterCollectionReusableView: UICollectionReusableView {
     }
     
     private func setupFooterView() {
-        backgroundColor = UIColor(named: Colors.defaultBackgroundColor.rawValue)
+        backgroundColor = UIColor(named: Colors.DefaultBackgroundColor.rawValue)
         addSubview(spinner)
     }
     

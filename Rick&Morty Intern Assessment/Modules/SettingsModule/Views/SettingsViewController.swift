@@ -16,7 +16,7 @@ final class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(named: Colors.defaultBackgroundColor.rawValue)
+        view.backgroundColor = UIColor(named: Colors.DefaultBackgroundColor.rawValue)
         title = "Settings"
     }
     
