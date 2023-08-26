@@ -14,6 +14,10 @@ final class CharacterDetailViewController: UIViewController {
     private let viewModel: CharacterDetailViewModel
     private let characterDetailView: CharacterDetailView
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     //MARK: - Lifecycle & Setup
     
     init(viewModel: CharacterDetailViewModel) {
@@ -30,13 +34,23 @@ final class CharacterDetailViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = UIColor.backgroundColor
-        title = viewModel.characterName
         view.addSubview(characterDetailView)
         
+        configureNavigationBar()
         setupLayout()
         
         characterDetailView.collectionView?.delegate = self
         characterDetailView.collectionView?.dataSource = self
+    }
+    
+    private func configureNavigationBar() {
+        self.title = ""
+        
+        let backButton = UIBarButtonItem()
+        backButton.title = ""
+        
+        self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        
     }
     
     private func setupLayout() {

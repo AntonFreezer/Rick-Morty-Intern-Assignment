@@ -94,6 +94,8 @@ final class CharacterOriginCollectionViewCell: UICollectionViewCell {
         ])
     }
     
+    //MARK: - ViewModel
+    
     public func configure(with viewModel: CharacterOriginCollectionViewCellViewModel) {
         viewModel.registerForData { [weak self] data in
             self?.originNameLabel.text = data.name
@@ -101,5 +103,11 @@ final class CharacterOriginCollectionViewCell: UICollectionViewCell {
         }
         
         viewModel.fetchLocation()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        originNameLabel.text = nil
+        originTypeLabel.text = nil
     }
 }

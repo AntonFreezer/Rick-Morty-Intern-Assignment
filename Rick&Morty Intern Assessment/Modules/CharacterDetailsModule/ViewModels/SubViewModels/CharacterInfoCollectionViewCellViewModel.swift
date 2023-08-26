@@ -5,7 +5,6 @@
 //  Created by Anton Kholodkov on 22.08.2023.
 //
 
-
 import UIKit
 
 final class CharacterInfoCollectionViewCellViewModel {
@@ -13,14 +12,14 @@ final class CharacterInfoCollectionViewCellViewModel {
     private let character: Character
     
     let species: String
-    let type: String
+    var type: String
     let gender: CharacterGender
     
     init(character: Character) {
         self.character = character
         
         self.species = character.species
-        self.type = character.type
+        self.type = (character.type == "") ? "None" : character.type
         self.gender = character.gender
     }
 }

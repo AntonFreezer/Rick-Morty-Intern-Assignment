@@ -95,4 +95,11 @@ final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
         
         viewModel.fetchEpisode()
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        episodeNameLabel.text = nil
+        episodeSeasonLabel.text = nil
+        episodeAirDateLabel.text = nil
+    }
 }

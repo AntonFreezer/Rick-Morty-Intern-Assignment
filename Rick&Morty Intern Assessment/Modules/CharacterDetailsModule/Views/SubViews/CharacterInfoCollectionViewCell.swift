@@ -97,6 +97,8 @@ final class CharacterInfoCollectionViewCell: UICollectionViewCell {
         ])
     }
     
+    //MARK: - ViewModel
+    
     public func configure(with viewModel: CharacterInfoCollectionViewCellViewModel) {
         speciesLabel.trailingText = viewModel.species
         typeLabel.trailingText = viewModel.type

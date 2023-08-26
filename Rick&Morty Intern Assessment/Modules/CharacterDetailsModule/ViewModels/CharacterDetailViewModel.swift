@@ -14,7 +14,7 @@ final class CharacterDetailViewModel {
     private let character: Character
     
     public var characterName: String {
-        character.name.uppercased()
+        character.name.capitalized
     }
     
     public var characterStatus: String {
@@ -41,6 +41,11 @@ final class CharacterDetailViewModel {
     
     init(character: Character) {
         self.character = character
+        if !(character.type.isEmpty) {
+            print(character.type) }
+        else {
+                print("NO NO NO NO NO NO NO NO NO NO NO NO NO NO")
+            }
         setUpSections()
     }
     
