@@ -7,11 +7,9 @@
 
 import UIKit
 
-final class CharactersListViewController: UIViewController {
+final class CharactersListViewController: GenericViewController<CharacterListView> {
     
     //MARK: - Properties
-    
-    private let characterListView = CharacterListView()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -23,21 +21,20 @@ final class CharactersListViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Characters"
-        view.backgroundColor = UIColor.backgroundColor
+        rootView.backgroundColor = UIColor.backgroundColor
         
         setupView()
     }
     
     private func setupView() {
-        characterListView.delegate = self
-        view.addSubview(characterListView)
+        rootView.delegate = self
         
-        NSLayoutConstraint.activate([
-            characterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            characterListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            characterListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+//        NSLayoutConstraint.activate([
+//            rootView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+//            rootView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+//            rootView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+//            rootView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+//        ])
     }
     
 }

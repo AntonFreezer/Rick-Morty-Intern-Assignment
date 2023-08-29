@@ -38,6 +38,7 @@ final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 14, weight: .light)
         label.textColor = .lightGray
         label.textAlignment = .left
         
@@ -78,8 +79,7 @@ final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
             episodeSeasonLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
 
             episodeAirDateLabel.topAnchor.constraint(equalTo: episodeNameLabel.bottomAnchor, constant: 10),
-            episodeAirDateLabel.leadingAnchor.constraint(equalTo: episodeSeasonLabel.trailingAnchor, constant: 10),
-            episodeAirDateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
+            episodeAirDateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             episodeAirDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
         ])
     }

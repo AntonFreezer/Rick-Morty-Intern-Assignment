@@ -7,12 +7,11 @@
 
 import UIKit
 
-final class CharacterDetailViewController: UIViewController {
+final class CharacterDetailViewController: GenericViewController<CharacterDetailView> {
     
     //MARK: - Properties
     
     private let viewModel: CharacterDetailViewModel
-    private let characterDetailView: CharacterDetailView
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -22,7 +21,6 @@ final class CharacterDetailViewController: UIViewController {
     
     init(viewModel: CharacterDetailViewModel) {
         self.viewModel = viewModel
-        self.characterDetailView = CharacterDetailView(frame: .zero, viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -30,17 +28,19 @@ final class CharacterDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func loadView() {
+        self.view = CharacterDetailView(frame: .zero, viewModel: viewModel)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.backgroundColor
-        view.addSubview(characterDetailView)
+        rootView.backgroundColor = UIColor.backgroundColor
         
         configureNavigationBar()
-        setupLayout()
         
-        characterDetailView.collectionView?.delegate = self
-        characterDetailView.collectionView?.dataSource = self
+        rootView.collectionView?.delegate = self
+        rootView.collectionView?.dataSource = self
     }
     
     private func configureNavigationBar() {
@@ -51,15 +51,6 @@ final class CharacterDetailViewController: UIViewController {
         
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         
-    }
-    
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            characterDetailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            characterDetailView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            characterDetailView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-            characterDetailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
     }
 }
 
@@ -155,18 +146,18 @@ extension CharacterDetailViewController: UICollectionViewDelegate, UICollectionV
     // Navigation
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let sectionType = viewModel.sections[indexPath.section]
-        
-        switch sectionType {
-        case .info, .origin:
-            break
-        case .episodes:
-            let episodes = self.viewModel.episodes
-            let selection = episodes[indexPath.row]
+//        let sectionType = viewModel.sections[indexPath.section]
+//
+//        switch sectionType {
+//        case .info, .origin:
+//            break
+//        case .episodes:
+//            let episodes = self.viewModel.episodes
+//            let selection = episodes[indexPath.row]
             
             // implementation of episode details module
 //            let vc = EpisodeDetailViewController(url: URL(string:selection))
 //            navigationController?.pushViewController(vc, animated: true)
-        }
+//        }
     }
 }

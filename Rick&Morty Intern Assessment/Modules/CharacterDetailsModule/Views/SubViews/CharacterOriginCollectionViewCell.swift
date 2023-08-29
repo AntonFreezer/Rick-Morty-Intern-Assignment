@@ -75,19 +75,15 @@ final class CharacterOriginCollectionViewCell: UICollectionViewCell {
     
     private func setupLayout() {
         NSLayoutConstraint.activate([
-            // iconImage
             iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             iconImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
             iconImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
-            iconImageView.heightAnchor.constraint(equalToConstant: 64),
             iconImageView.widthAnchor.constraint(equalToConstant: 64),
 
-            // originNameLabel
             originNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 17),
             originNameLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 10),
             originNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
 
-            // originTypeLabel
             originTypeLabel.leadingAnchor.constraint(equalTo: iconImageView.trailingAnchor, constant: 10),
             originTypeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
             originTypeLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -17)

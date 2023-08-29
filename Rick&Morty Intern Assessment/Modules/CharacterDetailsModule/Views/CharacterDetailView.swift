@@ -11,7 +11,7 @@ final class CharacterDetailView: UIView {
     
     //MARK: - Properties
     
-    private let viewModel: CharacterDetailViewModel
+    private var viewModel: CharacterDetailViewModel?
     
     //MARK: - UI Components
     
@@ -51,6 +51,10 @@ final class CharacterDetailView: UIView {
     
     //MARK: - Lifecycle & Setup
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
     init(frame: CGRect, viewModel: CharacterDetailViewModel) {
         self.viewModel = viewModel
         super.init(frame: frame)
@@ -66,15 +70,16 @@ final class CharacterDetailView: UIView {
     
     private func setupView() {
         backgroundColor = UIColor.backgroundColor
-        translatesAutoresizingMaskIntoConstraints = false
-        
-        let collectionView = createCollectionView()
-        self.collectionView = collectionView
+
+        self.collectionView = createCollectionView()
         
         addSubview(characterImageView)
         addSubview(characterNameLabel)
         addSubview(characterStatusLabel)
-        addSubview(collectionView)
+        addSubview(collectionView!)
+//        if let cv = self.collectionView {
+//            addSubview(cv)
+//        }
     }
     
     private func setupLayout() {
@@ -83,31 +88,31 @@ final class CharacterDetailView: UIView {
         }
         
         NSLayoutConstraint.activate([
-            characterImageView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            characterImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 10),
             characterImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
             characterImageView.heightAnchor.constraint(equalToConstant: 148),
             characterImageView.widthAnchor.constraint(equalToConstant: 148),
             
             characterNameLabel.topAnchor.constraint(equalTo: characterImageView.bottomAnchor, constant: 20),
-            characterNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            characterNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
+            characterNameLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            characterNameLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+
             characterStatusLabel.topAnchor.constraint(equalTo: characterNameLabel.bottomAnchor, constant: 5),
-            characterStatusLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            characterStatusLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
+            characterStatusLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            characterStatusLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+
             collectionView.topAnchor.constraint(equalTo: characterStatusLabel.bottomAnchor, constant: 20),
-            collectionView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 25),
-            collectionView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
-            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 25),
+            collectionView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -25),
+            collectionView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
         ])
     }
     
     private func populateUpperElements() {
-        characterNameLabel.text = viewModel.characterName
-        characterStatusLabel.text = viewModel.characterStatus
+        characterNameLabel.text = viewModel?.characterName
+        characterStatusLabel.text = viewModel?.characterStatus
         
-        viewModel.fetchImage { [weak self] result in
+        viewModel?.fetchImage { [weak self] result in
             switch result {
             case .failure:
                 break
@@ -123,9 +128,10 @@ final class CharacterDetailView: UIView {
     //MARK: - CollectionView
     
     private func createCollectionView() -> UICollectionView {
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
-            return self.createSection(for: sectionIndex)
+        let layout = UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
+            return self?.createSection(for: sectionIndex)
         }
+        
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
@@ -139,17 +145,16 @@ final class CharacterDetailView: UIView {
         return collectionView
     }
     
-    private func createSection(for sectionIndex: Int) -> NSCollectionLayoutSection {
-        let sectionTypes = viewModel.sections
+    private func createSection(for sectionIndex: Int) -> NSCollectionLayoutSection? {
+        let sectionTypes = viewModel?.sections
         
-        switch sectionTypes[sectionIndex] {
+        switch sectionTypes![sectionIndex] {
         case .info:
-            return viewModel.createInfoSectionLayout()
+            return viewModel?.createInfoSectionLayout()
         case .origin:
-            return viewModel.createOriginSectionLayout()
+            return viewModel?.createOriginSectionLayout()
         case .episodes:
-            return viewModel.createEpisodeSectionLayout()
+            return viewModel?.createEpisodeSectionLayout()
         }
     }
 }
-
