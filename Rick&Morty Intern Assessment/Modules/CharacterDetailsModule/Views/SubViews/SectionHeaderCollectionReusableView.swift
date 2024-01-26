@@ -8,7 +8,10 @@
 import UIKit
 
 final class SectionHeaderCollectionReusableView: UICollectionReusableView {
-    static let identifier = "SectionHeaderCollectionReusableView"
+    
+    static var identifier: String {
+        return String(describing: SectionHeaderCollectionReusableView.self)
+    }
     
     public let titleLabel: UILabel = {
         let label = UILabel(frame: .zero)

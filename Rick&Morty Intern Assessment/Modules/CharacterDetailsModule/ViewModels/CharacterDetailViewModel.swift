@@ -61,6 +61,7 @@ final class CharacterDetailViewModel {
             completion(.failure(URLError(.badURL)))
             return
         }
+        
         ImageManager.shared.downloadImage(imageURL, completion: completion)
     }
     
@@ -77,10 +78,14 @@ final class CharacterDetailViewModel {
     
     private func createHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
         let footerHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),                                                      heightDimension: .absolute(25.0))
+        
         let header = NSCollectionLayoutBoundarySupplementaryItem(
                         layoutSize: footerHeaderSize,
                         elementKind: UICollectionView.elementKindSectionHeader,
                         alignment: .top)
+        
+        header.pinToVisibleBounds = true
+        
         return header
     }
     
@@ -91,7 +96,7 @@ final class CharacterDetailViewModel {
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
                 heightDimension: .absolute(124)),
-            subitems: [item, item]
+            subitems: [item]
         )
         
         let header = createHeader()

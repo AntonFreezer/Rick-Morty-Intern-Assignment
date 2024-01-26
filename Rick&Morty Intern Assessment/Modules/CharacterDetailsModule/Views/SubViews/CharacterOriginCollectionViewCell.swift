@@ -11,7 +11,9 @@ final class CharacterOriginCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
     
-    static let cellIdentifier = "CharacterOriginCollectionViewCell"
+    static var cellIdentifier: String {
+        return String(describing: CharacterOriginCollectionViewCell.self)
+    }
     
     //MARK: - UI Components
     

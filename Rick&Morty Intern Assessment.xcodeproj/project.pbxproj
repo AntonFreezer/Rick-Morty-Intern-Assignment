@@ -280,6 +280,15 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		966595672B63E3E300D118A3 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				964882072A93E1CC008DA625 /* CharacterCollectionViewCell.swift */,
+				96740B592A94DC4A001CB9F8 /* SectionFooterCollectionReusableView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		96664D702A9E939F0064082E /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,8 +351,7 @@
 			children = (
 				964881F52A9373EB008DA625 /* CharactersListViewController.swift */,
 				964882032A93D3EC008DA625 /* CharacterListView.swift */,
-				964882072A93E1CC008DA625 /* CharacterCollectionViewCell.swift */,
-				96740B592A94DC4A001CB9F8 /* SectionFooterCollectionReusableView.swift */,
+				966595672B63E3E300D118A3 /* SubViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";

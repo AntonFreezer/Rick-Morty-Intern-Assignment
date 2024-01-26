@@ -46,9 +46,6 @@ final class CharactersListViewController: GenericViewController<CharacterListVie
     
     private func setupView() {
         rootView.collectionView.delegate = self
-        
-        rootView.collectionView.register(CharacterCollectionViewCell.self, forCellWithReuseIdentifier: CharacterCollectionViewCell.cellIdentifier)
-        rootView.collectionView.register(SectionFooterCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: SectionFooterCollectionReusableView.identifier)
     }
     
     private func setupViewModel() {
@@ -106,7 +103,7 @@ extension CharactersListViewController: UICollectionViewDelegate {
     
 }
  
-//MARK: - CollectionView Delegate FlowLayout
+//MARK: - CollectionView Delegate FlowLayout & Supplementary Views
 
 extension CharactersListViewController: UICollectionViewDelegateFlowLayout {
     
@@ -179,6 +176,7 @@ extension CharactersListViewController {
         let viewModel = CharacterDetailViewModel(character: character)
         let characterDetailVC = CharacterDetailViewController(viewModel: viewModel)
         characterDetailVC.navigationItem.largeTitleDisplayMode = .never
+        
         navigationController?.pushViewController(characterDetailVC, animated: true)
     }
     
