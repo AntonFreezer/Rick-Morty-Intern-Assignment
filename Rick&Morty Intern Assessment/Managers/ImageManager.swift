@@ -10,12 +10,20 @@ import Foundation
 final class ImageManager {
     static let shared = ImageManager()
     
-    private var imageDataCache = NSCache<NSString, NSData>()
+    var urlSession: URLSession {
+        let configuration = URLSessionConfiguration.default
+        
+        configuration.urlCache = URLCache(memoryCapacity: 200, diskCapacity: 200, diskPath: "images")
+        configuration.timeoutIntervalForRequest = 10
+        configuration.httpMaximumConnectionsPerHost = 6
+        
+        return URLSession(configuration: configuration)
+    }
     
     private init() {}
     
     
-    /// This method either downloads or retrieves image by provided URL via URLSession data task and stores/retrieves the result in/from the private cache of the singleton class
+    /// This method either downloads or retrieves image by provided URL via URLSession data task and stores/retrieves the result in/from the urlSession cache
     /// - Parameters:
     ///   - url: Image URL
     ///   - completion: completion handler in a Result wrapper
