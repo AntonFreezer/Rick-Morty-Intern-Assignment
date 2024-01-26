@@ -141,7 +141,7 @@ extension CharactersListViewController: UIScrollViewDelegate {
               let url = URL(string: nextURL)
         else { return }
         
-        Timer.scheduledTimer(withTimeInterval: 0.25, repeats: false) { [weak self] t in
+        Timer.scheduledTimer(withTimeInterval: 1.15, repeats: false) { [weak self] t in
             let offset = scrollView.contentOffset.y
             let totalContentHeight = scrollView.contentSize.height
             let totalScrollViewFixedHeight = scrollView.frame.size.height
