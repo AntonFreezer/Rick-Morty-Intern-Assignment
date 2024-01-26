@@ -23,7 +23,7 @@ final class APIService {
     ///   - request: request with APIRequest type
     ///   - dataType: the data type from existing data models
     ///   - completion: the returned data in the Result wrapper
-    public func execute<T:Codable>(
+    public func execute<T:Decodable>(
         _ request: APIRequest,
         expecting dataType: T.Type,
         completion: @escaping (Result<T, Error>) -> Void

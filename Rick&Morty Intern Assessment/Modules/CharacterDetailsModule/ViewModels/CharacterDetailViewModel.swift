@@ -133,7 +133,6 @@ final class CharacterDetailViewModel {
         
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [header]        
-        section.orthogonalScrollingBehavior = .none
         return section
     }
 }

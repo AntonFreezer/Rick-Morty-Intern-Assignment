@@ -8,7 +8,9 @@
 import UIKit
 
 final class SectionFooterCollectionReusableView: UICollectionReusableView {
-    static let identifier = "SectionFooterCollectionReusableView"
+    static var identifier: String {
+        return String(describing: SectionFooterCollectionReusableView.self)
+    }
     
     private let spinner: UIActivityIndicatorView = {
         let spinner = UIActivityIndicatorView(style: .large)

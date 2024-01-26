@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct GetAllCharactersResponse: Codable {
-    struct Info: Codable {
+struct GetAllCharactersResponse: Decodable {
+    struct Info: Decodable {
         let count: Int
         let pages: Int
         let next: String?

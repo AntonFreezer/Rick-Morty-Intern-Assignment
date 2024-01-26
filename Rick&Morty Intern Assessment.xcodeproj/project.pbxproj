@@ -215,9 +215,9 @@
 		961712492A8F94FB00207A35 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				96740B702A953755001CB9F8 /* SubViews */,
 				96740B612A952AB3001CB9F8 /* CharacterDetailView.swift */,
 				96740B5F2A952A6A001CB9F8 /* CharacterDetailViewController.swift */,
+				96740B702A953755001CB9F8 /* SubViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
