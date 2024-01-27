@@ -11,7 +11,9 @@ final class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
     
-    static let cellIdentifier = "CharacterEpisodeCollectionViewCell"
+    static var cellIdentifier: String {
+        return String(describing: CharacterEpisodeCollectionViewCell.self)
+    }
     
     //MARK: - UI Components
     

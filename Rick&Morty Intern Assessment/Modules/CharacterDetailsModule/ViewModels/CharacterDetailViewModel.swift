@@ -22,7 +22,7 @@ final class CharacterDetailViewModel {
     }
 
     public var episodes: [String] {
-        character.episode
+        character.episodes
     }
     
     private var imageURL: URL? {
@@ -48,7 +48,7 @@ final class CharacterDetailViewModel {
         sections = [
             .info(viewModel: .init(character: character)),
             .origin(viewModel: .init(originURLString: character.origin.url)),
-            .episodes(viewModels: character.episode.compactMap {
+            .episodes(viewModels: character.episodes.compactMap {
                 CharacterEpisodeCollectionViewCellViewModel(episodeURL: URL(string: $0))
             })
         ]
@@ -61,6 +61,7 @@ final class CharacterDetailViewModel {
             completion(.failure(URLError(.badURL)))
             return
         }
+        
         ImageManager.shared.downloadImage(imageURL, completion: completion)
     }
     
@@ -77,10 +78,14 @@ final class CharacterDetailViewModel {
     
     private func createHeader() -> NSCollectionLayoutBoundarySupplementaryItem {
         let footerHeaderSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),                                                      heightDimension: .absolute(25.0))
+        
         let header = NSCollectionLayoutBoundarySupplementaryItem(
                         layoutSize: footerHeaderSize,
                         elementKind: UICollectionView.elementKindSectionHeader,
                         alignment: .top)
+        
+        header.pinToVisibleBounds = true
+        
         return header
     }
     
@@ -91,7 +96,7 @@ final class CharacterDetailViewModel {
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1.0),
                 heightDimension: .absolute(124)),
-            subitems: [item, item]
+            subitems: [item]
         )
         
         let header = createHeader()
@@ -133,7 +138,6 @@ final class CharacterDetailViewModel {
         
         let section = NSCollectionLayoutSection(group: group)
         section.boundarySupplementaryItems = [header]        
-        section.orthogonalScrollingBehavior = .none
         return section
     }
 }

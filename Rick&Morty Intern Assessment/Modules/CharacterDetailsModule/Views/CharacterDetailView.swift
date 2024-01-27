@@ -77,9 +77,7 @@ final class CharacterDetailView: UIView {
         addSubview(characterNameLabel)
         addSubview(characterStatusLabel)
         addSubview(collectionView!)
-//        if let cv = self.collectionView {
-//            addSubview(cv)
-//        }
+
     }
     
     private func setupLayout() {
@@ -132,7 +130,6 @@ final class CharacterDetailView: UIView {
             return self?.createSection(for: sectionIndex)
         }
         
-        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor(named: Colors.DefaultBackgroundColor.rawValue)
@@ -146,9 +143,9 @@ final class CharacterDetailView: UIView {
     }
     
     private func createSection(for sectionIndex: Int) -> NSCollectionLayoutSection? {
-        let sectionTypes = viewModel?.sections
+        guard let sectionTypes = viewModel?.sections else { return nil }
         
-        switch sectionTypes![sectionIndex] {
+        switch sectionTypes[sectionIndex] {
         case .info:
             return viewModel?.createInfoSectionLayout()
         case .origin:

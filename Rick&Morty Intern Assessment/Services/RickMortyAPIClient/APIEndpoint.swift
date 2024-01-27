@@ -7,7 +7,7 @@
 
 import Foundation
 
-@frozen enum APIEndpoint: String {
+enum APIEndpoint: String {
     case character
     // TBD
     case location

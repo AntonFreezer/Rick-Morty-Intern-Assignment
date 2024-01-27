@@ -8,7 +8,12 @@
 import UIKit
 
 final class CharacterCollectionViewCell: UICollectionViewCell {
-    static let cellIdentifier = "CharacterCollectionViewCell"
+    
+    //MARK: - Properties
+    
+    static var cellIdentifier: String {
+        return String(describing: CharacterCollectionViewCell.self)
+    }
     
     //MARK: - UI Components
     

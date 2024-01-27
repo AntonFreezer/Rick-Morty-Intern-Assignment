@@ -215,9 +215,9 @@
 		961712492A8F94FB00207A35 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				96740B702A953755001CB9F8 /* SubViews */,
 				96740B612A952AB3001CB9F8 /* CharacterDetailView.swift */,
 				96740B5F2A952A6A001CB9F8 /* CharacterDetailViewController.swift */,
+				96740B702A953755001CB9F8 /* SubViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -278,6 +278,15 @@
 				96664D712A9E93AF0064082E /* Resources */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		966595672B63E3E300D118A3 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				964882072A93E1CC008DA625 /* CharacterCollectionViewCell.swift */,
+				96740B592A94DC4A001CB9F8 /* SectionFooterCollectionReusableView.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		96664D702A9E939F0064082E /* UI */ = {
@@ -342,8 +351,7 @@
 			children = (
 				964881F52A9373EB008DA625 /* CharactersListViewController.swift */,
 				964882032A93D3EC008DA625 /* CharacterListView.swift */,
-				964882072A93E1CC008DA625 /* CharacterCollectionViewCell.swift */,
-				96740B592A94DC4A001CB9F8 /* SectionFooterCollectionReusableView.swift */,
+				966595672B63E3E300D118A3 /* SubViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";

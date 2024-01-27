@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CharacterLocation: Codable, LocationDataRepresentable {
+struct CharacterLocation: Decodable, Hashable, LocationDataRepresentable {
     let id: Int
     let name: String
     let type: String

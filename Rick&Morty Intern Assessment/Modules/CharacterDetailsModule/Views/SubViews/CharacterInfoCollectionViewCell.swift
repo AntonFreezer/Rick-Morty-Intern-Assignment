@@ -11,7 +11,9 @@ final class CharacterInfoCollectionViewCell: UICollectionViewCell {
     
     //MARK: - Properties
     
-    static let cellIdentifier = "CharacterInfoCollectionViewCell"
+    static var cellIdentifier: String {
+        return String(describing: CharacterInfoCollectionViewCell.self)
+    }
     
     //MARK: - UI Components
     

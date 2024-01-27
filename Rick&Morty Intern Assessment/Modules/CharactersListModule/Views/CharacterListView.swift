@@ -7,24 +7,11 @@
 
 import UIKit
 
-protocol CharacterListViewDelegate: AnyObject {
-    func characterListView(
-        _ characterListView: CharacterListView,
-        didSelectCharacter character: Character
-    )
-}
-
 final class CharacterListView: UIView {
-    
-    //MARK: - Properties
-    
-    public weak var delegate: CharacterListViewDelegate?
-    
-    private let viewModel = CharacterListViewModel()
     
     //MARK: - UI Components
     
-    private let collectionView: UICollectionView = {
+    lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
@@ -38,10 +25,10 @@ final class CharacterListView: UIView {
         collectionView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
         
         collectionView.backgroundColor = .clear
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
         collectionView.register(CharacterCollectionViewCell.self, forCellWithReuseIdentifier: CharacterCollectionViewCell.cellIdentifier)
         collectionView.register(SectionFooterCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: SectionFooterCollectionReusableView.identifier)
-        
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         return collectionView
     }()
@@ -52,10 +39,7 @@ final class CharacterListView: UIView {
         super.init(frame: .zero)
         
         addSubview(collectionView)
-        
         setupLayout()
-        setupViewModel()
-        setupCollectionView()
     }
     
     required init?(coder: NSCoder) {
@@ -72,32 +56,5 @@ final class CharacterListView: UIView {
         ])
     }
     
-    private func setupViewModel() {
-        viewModel.delegate = self
-        viewModel.fetchFirstCharacters()
-    }
-    
-    private func setupCollectionView() {
-        collectionView.delegate = viewModel
-        collectionView.dataSource = viewModel
-    }
 }
 
-    //MARK: - CharacterListViewModel Delegate
-    
-extension CharacterListView: CharacterListViewModelDelegate {
-    func didLoadFirstCharacters() {
-        collectionView.reloadData()
-        // animation
-    }
-    
-    func didLoadCharacters(with indexPaths: [IndexPath]) {
-        collectionView.performBatchUpdates {
-            collectionView.insertItems(at: indexPaths)
-        }
-    }
-    
-    func didSelectCharacter(_ character: Character) {
-        delegate?.characterListView(self, didSelectCharacter: character)
-    }
-}

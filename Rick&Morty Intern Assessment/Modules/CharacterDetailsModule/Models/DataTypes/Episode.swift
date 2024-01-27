@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Episode: Codable, EpisodeDataRepresentable {
+struct Episode: Decodable, Hashable, EpisodeDataRepresentable {
     let id: Int
     let name: String
     let air_date: String
