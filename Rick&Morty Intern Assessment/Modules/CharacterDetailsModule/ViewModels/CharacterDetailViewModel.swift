@@ -22,7 +22,7 @@ final class CharacterDetailViewModel {
     }
 
     public var episodes: [String] {
-        character.episode
+        character.episodes
     }
     
     private var imageURL: URL? {
@@ -48,7 +48,7 @@ final class CharacterDetailViewModel {
         sections = [
             .info(viewModel: .init(character: character)),
             .origin(viewModel: .init(originURLString: character.origin.url)),
-            .episodes(viewModels: character.episode.compactMap {
+            .episodes(viewModels: character.episodes.compactMap {
                 CharacterEpisodeCollectionViewCellViewModel(episodeURL: URL(string: $0))
             })
         ]

@@ -19,7 +19,7 @@ struct Character: Decodable {
     let origin: Origin
     let location: CharacterCurrentLocation
     let image: String
-    let episode: [String]
+    let episodes: [String]
     let url: String
     let created: String
 }
@@ -27,7 +27,8 @@ struct Character: Decodable {
 extension Character {
     enum CodingKeys: String, CodingKey {
         case id, name, status, species, type, gender
-        case origin, location, image, episode, url, created
+        case origin, location, image, url, created
+        case episode
     }
     
     init(from decoder: Decoder) throws {
@@ -41,7 +42,7 @@ extension Character {
         origin = try container.decode(Origin.self, forKey: .origin)
         location = try container.decode(CharacterCurrentLocation.self, forKey: .location)
         image = try container.decode(String.self, forKey: .image)
-        episode = try container.decode([String].self, forKey: .episode)
+        episodes = try container.decode([String].self, forKey: .episode)
         url = try container.decode(String.self, forKey: .url)
         created = try container.decode(String.self, forKey: .created)
     }
