@@ -8,8 +8,7 @@
 import UIKit
 
 protocol CharacterListViewModelDelegate: AnyObject {
-    func didLoadFirstCharacters()
-    func didLoadCharacters(with indexPaths: [IndexPath])
+    func didLoadCharacters()
     func didSelectCharacter(_ character: Character)
 }
 
@@ -66,7 +65,7 @@ final class CharacterListViewModel: NSObject {
                 self.currentResponseInfo = info
                 
                 DispatchQueue.main.async {
-                    self.delegate?.didLoadFirstCharacters()
+                    self.delegate?.didLoadCharacters()
                 }
             }
         }
@@ -109,7 +108,7 @@ final class CharacterListViewModel: NSObject {
                 
                 self.characters.append(contentsOf: results)
                 DispatchQueue.main.async {
-                    self.delegate?.didLoadCharacters(with: indexPaths)
+                    self.delegate?.didLoadCharacters()
                     self.isLoadingCharacters = false
                 }
             }
