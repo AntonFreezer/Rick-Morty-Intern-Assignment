@@ -158,11 +158,7 @@ extension CharactersListViewController: UIScrollViewDelegate {
 
 extension CharactersListViewController: CharacterListViewModelDelegate {
     
-    func didLoadFirstCharacters() {
-        applyShapshot()
-    }
-    
-    func didLoadCharacters(with indexPaths: [IndexPath]) {
+    func didLoadCharacters() {
         applyShapshot()
     }
     
