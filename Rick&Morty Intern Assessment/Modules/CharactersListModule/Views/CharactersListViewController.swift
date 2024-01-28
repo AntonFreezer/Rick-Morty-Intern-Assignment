@@ -102,7 +102,7 @@ extension CharactersListViewController: UICollectionViewDelegate {
     }
     
 }
- 
+
 //MARK: - CollectionView Delegate FlowLayout & Supplementary Views
 
 extension CharactersListViewController: UICollectionViewDelegateFlowLayout {
@@ -136,19 +136,20 @@ extension CharactersListViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         guard viewModel.shouldShowMoreIndicator,
-              !viewModel.isLoadingCharacters,
-              let nextURL = viewModel.currentResponseInfo?.next,
-              let url = URL(string: nextURL)
+              !viewModel.isLoadingCharacters
         else { return }
         
-        Timer.scheduledTimer(withTimeInterval: 1.15, repeats: false) { [weak self] t in
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] t in
             let offset = scrollView.contentOffset.y
             let totalContentHeight = scrollView.contentSize.height
             let totalScrollViewFixedHeight = scrollView.frame.size.height
             
-            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 100) {
-                self?.viewModel.fetchCharacters(url: url)
-            }
+            guard offset >= (totalContentHeight - totalScrollViewFixedHeight - 100),
+                  let nextURL = self?.viewModel.currentResponseInfo?.next,
+                  let url = URL(string: nextURL) else { return }
+            
+            self?.viewModel.fetchCharacters(url: url)
+            
             t.invalidate()
         }
     }
