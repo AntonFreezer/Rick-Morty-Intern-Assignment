@@ -6,26 +6,27 @@
 //
 
 import UIKit
+import Combine
 
 protocol CharacterListViewModelDelegate: AnyObject {
     func didLoadCharacters()
-    func didSelectCharacter(_ character: Character)
 }
 
-final class CharacterListViewModel: NSObject {
+final class CharacterListViewModel: NSObject, ViewModelType {
     
     //MARK: - IO
-    
+
     enum Input {
         case viewDidLoad
         case onScrollPaginated
     }
     
     enum Output {
-        case didLoadFirstCharacters
-        case didLoadCharacters(indexPaths: [IndexPath])
-        case didSelectCharacter(character: Character)
+        case didLoadCharacters
     }
+    
+    var output: any Subject = PassthroughSubject<Output, Never>()
+    var cancellables = Set<AnyCancellable>()
     
     //MARK: - Properties
     
@@ -50,8 +51,8 @@ final class CharacterListViewModel: NSObject {
     /// First fetch from API containing 20 Character objects
     public func fetchFirstCharacters() {
         APIService.shared.execute(.allCharactersRequest, expecting: GetAllCharactersResponse.self) { [weak self] result in
-            
             guard let self = self else { return }
+            
             switch result {
                 
             case .failure(let error):
@@ -94,19 +95,8 @@ final class CharacterListViewModel: NSObject {
                 let results = responseModel.results
                 let info = responseModel.info
                 self.currentResponseInfo = info
-                
-                let oldCount = self.characters.count
-                let newCount = results.count
-                let totalCount = oldCount + newCount
-                
-                let startingIndex = totalCount - newCount
-                let lastIndex = startingIndex + newCount
-                print(startingIndex, lastIndex)
-                
-                let indexPaths = Array(startingIndex..<lastIndex).compactMap(
-                    { IndexPath(row: $0, section: 0) })
-                
                 self.characters.append(contentsOf: results)
+                
                 DispatchQueue.main.async {
                     self.delegate?.didLoadCharacters()
                     self.isLoadingCharacters = false

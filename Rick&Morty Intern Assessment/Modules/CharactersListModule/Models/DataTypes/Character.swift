@@ -7,8 +7,7 @@
 
 import Foundation
 
-struct Character: Decodable {
-    let uuid = UUID()
+struct Character: Decodable, Hashable {
     
     let id: Int
     let name: String
@@ -30,7 +29,7 @@ extension Character {
         case origin, location, image, url, created
         case episode
     }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int.self, forKey: .id)
@@ -45,15 +44,5 @@ extension Character {
         episodes = try container.decode([String].self, forKey: .episode)
         url = try container.decode(String.self, forKey: .url)
         created = try container.decode(String.self, forKey: .created)
-    }
-}
-
-extension Character: Hashable {
-    static func == (lhs: Character, rhs: Character) -> Bool {
-        return lhs.uuid == rhs.uuid
-    }
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(uuid)
     }
 }

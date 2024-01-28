@@ -102,7 +102,7 @@ extension CharactersListViewController: UICollectionViewDelegate {
     }
     
 }
- 
+
 //MARK: - CollectionView Delegate FlowLayout & Supplementary Views
 
 extension CharactersListViewController: UICollectionViewDelegateFlowLayout {
@@ -133,47 +133,45 @@ extension CharactersListViewController: UICollectionViewDelegateFlowLayout {
 //MARK: - ScrollView Delegate & Pagination
 
 extension CharactersListViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplaySupplementaryView view: UICollectionReusableView, forElementKind elementKind: String, at indexPath: IndexPath) {
         
-        guard viewModel.shouldShowMoreIndicator,
+        guard elementKind == UICollectionView.elementKindSectionFooter,
               !viewModel.isLoadingCharacters,
-              let nextURL = viewModel.currentResponseInfo?.next,
-              let url = URL(string: nextURL)
+              viewModel.shouldShowMoreIndicator
         else { return }
         
-        Timer.scheduledTimer(withTimeInterval: 1.15, repeats: false) { [weak self] t in
-            let offset = scrollView.contentOffset.y
-            let totalContentHeight = scrollView.contentSize.height
-            let totalScrollViewFixedHeight = scrollView.frame.size.height
-            
-            if offset >= (totalContentHeight - totalScrollViewFixedHeight - 100) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            if let nextURL = self?.viewModel.currentResponseInfo?.next,
+               let url = URL(string: nextURL) {
                 self?.viewModel.fetchCharacters(url: url)
             }
-            t.invalidate()
+            
         }
     }
-}
-
-//MARK: - CharacterListViewModel Delegate
-
-extension CharactersListViewController: CharacterListViewModelDelegate {
-    
-    func didLoadCharacters() {
-        applyShapshot()
-    }
     
 }
-
-//MARK: - Navigation
-
-extension CharactersListViewController {
     
-    func didSelectCharacter(_ character: Character) {
-        let viewModel = CharacterDetailViewModel(character: character)
-        let characterDetailVC = CharacterDetailViewController(viewModel: viewModel)
-        characterDetailVC.navigationItem.largeTitleDisplayMode = .never
+    //MARK: - CharacterListViewModel Delegate
+    
+    extension CharactersListViewController: CharacterListViewModelDelegate {
         
-        navigationController?.pushViewController(characterDetailVC, animated: true)
+        func didLoadCharacters() {
+            applyShapshot()
+        }
+        
     }
     
-}
+    //MARK: - Navigation
+    
+    extension CharactersListViewController {
+        
+        func didSelectCharacter(_ character: Character) {
+            let viewModel = CharacterDetailViewModel(character: character)
+            let characterDetailVC = CharacterDetailViewController(viewModel: viewModel)
+            characterDetailVC.navigationItem.largeTitleDisplayMode = .never
+            
+            navigationController?.pushViewController(characterDetailVC, animated: true)
+        }
+        
+    }
