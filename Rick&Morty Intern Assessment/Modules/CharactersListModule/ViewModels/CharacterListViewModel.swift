@@ -23,6 +23,7 @@ final class CharacterListViewModel: NSObject, ViewModelType {
     
     enum Output {
         case didLoadCharacters
+        case didSelectCharacter(character: Character)
     }
     
     var output: any Subject = PassthroughSubject<Output, Never>()

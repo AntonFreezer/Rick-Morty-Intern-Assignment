@@ -147,6 +147,7 @@ extension CharactersListViewController: UIScrollViewDelegate {
                 self?.viewModel.fetchCharacters(url: url)
             }
             
+            t.invalidate()
         }
     }
     
