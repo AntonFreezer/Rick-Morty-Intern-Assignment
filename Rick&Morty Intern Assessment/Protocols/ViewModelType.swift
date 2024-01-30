@@ -12,7 +12,6 @@ protocol ViewModelType {
     associatedtype Input
     associatedtype Output
     
-    var output: any Subject { get }
     var cancellables: Set<AnyCancellable> { get }
     
 }

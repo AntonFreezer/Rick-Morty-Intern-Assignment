@@ -8,34 +8,46 @@
 import UIKit
 import Combine
 
-protocol CharacterListViewModelDelegate: AnyObject {
-    func didLoadCharacters()
-}
-
 final class CharacterListViewModel: NSObject, ViewModelType {
     
     //MARK: - IO
 
     enum Input {
         case viewDidLoad
-        case onScrollPaginated
+        case onScrollPaginated(url: URL)
     }
     
     enum Output {
         case didLoadCharacters
-        case didSelectCharacter(character: Character)
     }
     
-    var output: any Subject = PassthroughSubject<Output, Never>()
+    var output: AnyPublisher<Output, Never> {
+        return subject.eraseToAnyPublisher()
+    }
+    private let subject = PassthroughSubject<Output, Never>()
+    
     var cancellables = Set<AnyCancellable>()
+    
+    func transform(input: AnyPublisher<Input, Never>) -> AnyPublisher<Output, Never> {
+        input.sink { [unowned self] event in
+            switch event {
+            case .viewDidLoad:
+                fetchFirstCharacters()
+                subject.send(.didLoadCharacters)
+            case .onScrollPaginated(let url):
+                fetchCharacters(url: url)
+                subject.send(.didLoadCharacters)
+            }
+        }.store(in: &cancellables)
+        
+        return output
+    }
     
     //MARK: - Properties
     
     enum Section {
         case Character
     }
-    
-    public weak var delegate: CharacterListViewModelDelegate?
     
     private(set) var isLoadingCharacters = false
     
@@ -67,7 +79,7 @@ final class CharacterListViewModel: NSObject, ViewModelType {
                 self.currentResponseInfo = info
                 
                 DispatchQueue.main.async {
-                    self.delegate?.didLoadCharacters()
+                    self.subject.send(.didLoadCharacters)
                 }
             }
         }
@@ -75,7 +87,10 @@ final class CharacterListViewModel: NSObject, ViewModelType {
     
     /// General fetching from API
     public func fetchCharacters(url: URL) {
-        guard !isLoadingCharacters else { return }
+        guard !isLoadingCharacters,
+              shouldShowMoreIndicator
+        else { return }
+        
         isLoadingCharacters = true
         
         guard let request = APIRequest(url: url) else {
@@ -99,7 +114,7 @@ final class CharacterListViewModel: NSObject, ViewModelType {
                 self.characters.append(contentsOf: results)
                 
                 DispatchQueue.main.async {
-                    self.delegate?.didLoadCharacters()
+                    self.subject.send(.didLoadCharacters)
                     self.isLoadingCharacters = false
                 }
             }

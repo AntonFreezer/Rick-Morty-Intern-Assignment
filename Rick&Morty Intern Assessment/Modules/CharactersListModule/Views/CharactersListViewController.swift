@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 final class CharactersListViewController: GenericViewController<CharacterListView> {
     
@@ -17,6 +18,13 @@ final class CharactersListViewController: GenericViewController<CharacterListVie
     private var dataSource: DataSource!
     
     private let viewModel: CharacterListViewModel
+    
+    private var output: AnyPublisher<CharacterListViewModel.Input, Never> {
+        return subject.eraseToAnyPublisher()
+    }
+    private let subject = PassthroughSubject<CharacterListViewModel.Input, Never>()
+    
+    private var cancellables = Set<AnyCancellable>()
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -36,21 +44,27 @@ final class CharactersListViewController: GenericViewController<CharacterListVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Characters"
-        rootView.backgroundColor = UIColor.backgroundColor
-        
         configureDataSource()
         setupView()
-        setupViewModel()
+        bindViewModel()
+        
+        subject.send(.viewDidLoad)
     }
     
     private func setupView() {
         rootView.collectionView.delegate = self
+        
+        title = "Characters"
+        rootView.backgroundColor = UIColor.backgroundColor
     }
     
-    private func setupViewModel() {
-        viewModel.delegate = self
-        viewModel.fetchFirstCharacters()
+    private func bindViewModel() {
+        viewModel.transform(input: output).sink { [unowned self] event in
+            switch event {
+            case .didLoadCharacters:
+                self.applyShapshot()
+            }
+        }.store(in: &cancellables)
     }
     
 }
@@ -147,32 +161,21 @@ extension CharactersListViewController: UIScrollViewDelegate {
                 self?.viewModel.fetchCharacters(url: url)
             }
             
-            t.invalidate()
         }
     }
     
 }
+
+//MARK: - Navigation
+
+extension CharactersListViewController {
     
-    //MARK: - CharacterListViewModel Delegate
-    
-    extension CharactersListViewController: CharacterListViewModelDelegate {
+    func didSelectCharacter(_ character: Character) {
+        let viewModel = CharacterDetailViewModel(character: character)
+        let characterDetailVC = CharacterDetailViewController(viewModel: viewModel)
+        characterDetailVC.navigationItem.largeTitleDisplayMode = .never
         
-        func didLoadCharacters() {
-            applyShapshot()
-        }
-        
+        navigationController?.pushViewController(characterDetailVC, animated: true)
     }
     
-    //MARK: - Navigation
-    
-    extension CharactersListViewController {
-        
-        func didSelectCharacter(_ character: Character) {
-            let viewModel = CharacterDetailViewModel(character: character)
-            let characterDetailVC = CharacterDetailViewController(viewModel: viewModel)
-            characterDetailVC.navigationItem.largeTitleDisplayMode = .never
-            
-            navigationController?.pushViewController(characterDetailVC, animated: true)
-        }
-        
-    }
+}
